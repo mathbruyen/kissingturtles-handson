@@ -166,6 +166,7 @@ a:focus {
 .step {
     position: relative;
     width: 900px;
+    height: 700px;
     padding: 40px;
     margin: 20px auto;
 
@@ -178,6 +179,18 @@ a:focus {
     font-family: 'PT Serif', georgia, serif;
     font-size: 48px;
     line-height: 1.5;
+}
+
+.section {
+  background-color: #BABABA;
+}
+.slide {
+  background-color: white;
+}
+
+h2 {
+  text-align: center;
+  background-color: red;
 }
 
 /*
@@ -206,14 +219,13 @@ a:focus {
     
     They cover everything what you see on first three steps of the demo.
 */
+/*
 .slide {
     display: block;
 
     width: 900px;
-    height: 700px;
     padding: 40px 60px;
 
-    background-color: white;
     border: 1px solid rgba(0, 0, 0, .3);
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
@@ -237,7 +249,7 @@ a:focus {
 
 .slide q strong {
     white-space: nowrap;
-}
+}*/
 
 /*
     And now we start to style each step separately.
