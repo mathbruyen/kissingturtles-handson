@@ -2,7 +2,33 @@
 <html>
   <head>
     <title>Draw scenery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+body {
+  background-color: #EAEAEA;
+}
+#canvas {
+  display: block;
+  outline: 1px solid red;
+  width: 100%;
+  max-width: 40em;
+  margin: 0 auto;
+}
+    </style>
+    <script type="application/javascript" src="ktDraw.js"></script>
+    <script type="application/javascript">
+//<!--
+window.onload = function () {
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+  window.ktDraw(context, {
+
+  }, canvas.height);
+};
+//-->
+    </script>
   </head>
   <body>
+    <canvas id="canvas" width="1000" height="1000"></canvas>
   </body>
 </html>
