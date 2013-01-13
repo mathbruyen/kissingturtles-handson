@@ -6,6 +6,8 @@
  * @param toFrame the frame at the end of the animation.
  * @param callback callback to call with no argument when animation is over.
  **/
-window.ktAnimate = function(canvas, fromFrame, toFrame, callback) {
-  // TODO
-};
+window.ktAnimate = (function() {
+  return function(canvas, fromFrame, toFrame, callback) {
+    // TODO
+  };
+})();

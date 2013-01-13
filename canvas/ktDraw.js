@@ -24,6 +24,8 @@
  * @param data data to draw.
  * @param size the size of the canvas.
  **/
-window.ktDraw = function(ctx, data, size) {
-  // TODO
-};
+window.ktDraw = (function() {
+  return function(ctx, data, size) {
+    // TODO
+  };
+})();
