@@ -713,3 +713,7 @@ h2 {
     Thanks for reading. I hope you enjoyed it at least as much as I enjoyed writing it
     for you.
 */
+
+pre {
+    font-size: 0.5em;
+}
