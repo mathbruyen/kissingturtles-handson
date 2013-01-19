@@ -22,7 +22,7 @@
  *
  * @param ctx 2D context of the canvas element.
  * @param data data to draw.
- * @param size the size of the canvas.
+ * @param size the size of the grid.
  **/
 window.ktDraw = (function() {
   return function(ctx, data, size) {
