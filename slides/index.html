@@ -125,53 +125,68 @@ var ctx = canvas.getContext('2d');</code></pre>
       </div>
 
       <div id="scaffolding-1" class="step slide" data-x="773" data-y="2277" data-scale="0.6">
-        <h2>Sep-up</h2>
-        <div>
-grails2.1+
-html5-mobile-scaffold
-github repo for bingo
+        <h2>Set-up</h2>
+        <div style="font-size: 20px">
+        <b>Software required</b><br/>
+        grails2.1+<br/>
+        html5-mobile-scaffold<br/>
+        <b>KissingTurtlesGreach Step by Step</b><br/>
+        <pre> > git clone https://github.com/corinnekrych/KissingTurtlesGreach.git</pre>
+        <span style="font-size: 20px;"><img width="5%" src="images/Warning-icon.png"/><b> Don't loose your hard work</span></b><br/>
+        Before getting code from github branches, backup!<br/>
+        <pre> > git checkout step1</pre>
+        <b>KissingTurtles tutorial</b><br/>
+        <pre> > git clone https://github.com/mathbruyen/kissingturtles-handson.git</pre>
         </div>
       </div>
 
+    
       <div id="scaffolding-2" class="step slide" data-x="1433" data-y="2277" data-scale="0.6">
-        <h2>Create project and Game domain class</h2>
-        <div style="font-size: 25px">
-grails create-app KissingTurtlesGreach<br/>
-grails iW --intellij<br/>
-grails cDC kissingturtles.Game
-add attibute String name
+        <h2>Kissing Turtles</h2>
+        <div style="float: left; font-size: 20px; text-align: left; display: inline-block; width: 30%"><br/>
+        <p>Intiative started in november for Grails48</p><img width="30%" src="images/g48_logo10.png"/>
+        <p>Game for kids to learn programming</p>
+        <p>Simple Groovy DSL to make the turtle move</p>        
+        </div>
+        <div style="float:right;font-size:30px;text-align:right;display:inline-block;">
+            <iframe src="http://kissingturtles.cloudfoundry.com" width="500px" height="600px" name="myFrame" id="myFrame"></iframe>
+        </div>
+    </div>
+
+      <div id="scaffolding-3" class="step slide" data-x="2093" data-y="2277" data-scale="0.6">
+        <h2>New project</h2><br/>
+        <div style="font-size: 20px">
+        <b>Create a new Grails app</b>
+        <pre> > grails create-app KissingTurtlesGreach</pre>
+        <b>Integrate with you favourite editor ;-) </b>
+        <pre> > grails integrate-with --intellij</pre>
+        <b>Only one domain class needed</b>
+        <pre> > grails create-domain-class kissingturtles.Game</pre>
+        add attribute to your domain class:<br/>
+        String name<br/>
       </div>
       </div>
 
-      <div id="scaffolding-3" class="step slide" data-x="2093" data-y="2277" data-scale="0.6">
+      <div id="scaffolding-4" class="step slide" data-x="2753" data-y="2277" data-scale="0.6">
         <h2>Scaffold with HTML5 mobile plugin</h2>
         <div style="display:inline-block;float:left;width:60%">
         <a href="http://3musket33rs.github.com/">3musket33rs</a>
         <div style="font-size: 20px">
-        <b>Step 1: plugin dependencies</b><br/>
-in BuildConfig.groovy<br/>
-grails.plugin.location."html5-mobile-scaffolding" = </br>
-"../html5-mobile-scaffolding"<br/>
-<b>Step 2: new scaffold script</b><br/>
-grails html-generate-all kissingturtles.Game<br/>
-grails run-app<br/>
-<b>Step 3: CRUD easy</b><br/>
-1. try CRUD oprations, add new game.</br/>
-2. offline caching and synchronization:<br/> 
-in js console type <b>localStorage</b><br/>
-3. turn off wifi or work offline menu in FF, add a new game<br/>
-===> git clone<br/> 
-https://github.com/corinnekrych/KissingTurtlesGreach.git<br/>
-===> git co step1<br/>
+        <b>1: Plugin dependencies</b> in BuildConfig.groovy
+<pre>grails.plugin.location."html5-mobile-scaffolding" = <br/>"../html5-mobile-scaffolding"</pre>
+<b>2: New scaffold script</b><br/>
+<pre> >grails html-generate-all kissingturtles.Game
+> grails run-app</pre>
+<b>You're lost?</b>
+<pre> > git checkout step1</pre>
         </div>
         </div>
         <img style="width:40%" src="images/figures/figure0.png" />
       </div>
 
-      <div id="scaffolding-4" class="step slide" data-x="2753" data-y="2277" data-scale="0.6">
-        
+      <div id="scaffolding-5" class="step slide" data-x="2753" data-y="2751" data-scale="0.6">
+        <h2>What was generated?</h2>
         <div style="font-size: 20px">
-          <b>What was generated?</b><br/>
           => controllers</b><br/>
           => views generated in web-app folder: no GSP!<br/>
           2 parts js framework, grails.mobile package<br/>
@@ -180,59 +195,66 @@ https://github.com/corinnekrych/KissingTurtlesGreach.git<br/>
         <img style="float:right;width:100%" src="images/figures/figure1.png" />
       </div>
 
-      <div id="scaffolding-5" class="step slide" data-x="2753" data-y="2751" data-scale="0.6">
-        <div style="font-size: 20px">
-          <b>Take just what we need...</b><br/>
-          1. in UrlMappings.groovy remove "/"(view:"/index")<br/>
-          2. in BuildCOnfig.groovy change:<br/>
-          line runtime ":jquery:1.8.2"<br/>
-          3. remove compile ':cache:1.0.0'<br/>
-          4. remove compile runtime ":resources:1.1.6"<br/>
-          5. remove offline caching<br/>
-          in game-bootstrap.js<br/>
-          options: { offline: false }<br/>
-          6. Change view behaviour<br/>
-          delete index.html<br/>
-          rename game-index.html into index.html<br/>
-          6. in <b>kissingturtles.views.game-view.js</b><br/>
-          ===> git checkout step2<br/>
-        </div>
-
-
-in index.html
-copy first html section
-we will add beheviour to ‘Play’ button
-in game-view.js
-    $('#play').live('click tap', function (event) {
-       $.mobile.changePage($('#section-list-game'));
-    });
-      </div>
-
       <div id="scaffolding-6" class="step slide" data-x="2753" data-y="3231" data-scale="0.6">
+        <h2>Offline mode</h2>
         <div style="font-size: 20px">
-          <b>Redesign main page: Play button</b><br/>
-          1. in indext.html add new section "start-game" + images<br/>
-          ===> git checkout step3<br/>
-          2. in <b>kissingturtles.views.game-view.js</b><br/>
-          add $('#play') event listener a la jQuery<br/>
-          redierct to list
-          <b>Create canvas</b><br/>
-          3. in "section-show-game" section remove form element<br/>
-          4. add canvas<br/>
-          <canvas id="canvas" width="500" height="500" style='width:500px;height:500px'></canvas> 
-          5. include ktDraw.js<br>
-          ===> git checkout step4<br/>
+<b>CRUD easy</b><br/>
+Try CRUD oprations, add new game.</br/>
+<b>Am I loosing my data offline?</b><br/> 
+in js console type
+<pre> > localStorage</pre/>
+<b>Test it</b><br/>
+1. turn off wifi or work offline menu in FF<br/>
+2. add a new game<br/>
+3. back offline<br/>
+<b>Clear data</b><br/>
+<pre> > localStorage.clear()</pre/>
         </div>
+        <img style="float:right;width:100%" src="images/figures/figure2.png" />
+        <img style="float:right;width:100%" src="images/figures/figure3.png" />
       </div>
 
       <div id="scaffolding-7" class="step slide" data-x="2093" data-y="3231" data-scale="0.6">
-        <h2>Let's draw a single frame</h2>
-        <a href="../canvas/ktDraw.js">Edit</a>
-        <a href="../canvas/frame.html">Test</a>
+        <h2>Take just what we need...</h2>
+        <div style="font-size: 20px;">
+          1. in UrlMappings.groovy remove: "/"(view:"/index")<br/>
+          2. in BuildConfig.groovy remove:
+          <pre>compile ':cache:1.0.0'
+          runtime ":resources:1.1.6"</pre>
+          3. remove offline caching in game-bootstrap.js
+          <pre> options: { 
+            offline: false,
+            synchronization: true 
+          }
+          </pre>
+          4. Change view behaviour<br/>
+          delete index.html<br/>
+          rename game-index.html into index.html<br/>
+          <b>You loose your path?</b><br/>
+          <pre> > git checkout step2</pre>
+        </div>
       </div>
 
       <div id="scaffolding-8" class="step slide" data-x="1433" data-y="3231" data-scale="0.6">
-        <h2>Cleaning a bit</h2>
+        <h2>Resign main page<h2>
+        <div style="float: left; font-size: 20px; text-align: left; display: inline-block; width: 50%">
+          <b>Play button</b><br/>
+          1. in indext.html add new section "start-game" + images
+          <pre> > git checkout step3</pre>
+          2. in <b>kissingturtles.views.game-view.js</b><br/>
+          <pre>$('#play').live('click tap', function (e) {
+        $.mobile.changePage($("#section-list-game"));
+    });</pre>
+          <b>Create canvas</b><br/>
+          3. in "section-show-game" section remove form element<br/>
+          4. add canvas<br/>
+          5. include ktDraw.js<br>
+          <b>Did you mess up?</b>
+          <pre> > git checkout step4</pre>
+        </div>
+          <div style="float:right;font-size:30px;text-align:right;display:inline-block;">
+            <img src="images/mainpage.png"  width="400px" height="500px" name="myFrame" id="myFrame"></img>
+        </div>
       </div>
 
       <div id="scaffolding-9" class="step slide" data-x="773" data-y="3231" data-scale="0.6">
@@ -250,9 +272,25 @@ in game-view.js
       </div>  
 
       <div id="scaffolding-12" class="step slide" data-x="2093" data-y="2751" data-scale="0.6">
-        <h2>Let's animate</h2>
-        <a href="../canvas/ktAnimate.js">Edit</a>
-        <a href="../canvas/animate.html">Test</a>
+        <h2>Multi-Users, Real Time</h2>
+        <div style="float: left; font-size: 20px; text-align: left; width: 1250px;">
+        <p>Back to our BS Bingo game, single-user, client side. </p>
+        <p style="font-size: 20px;color:pink;" >Suppose we want to play cross meeting rooms? or you prefer a push notification rather that standing up ;)</p>
+        <p>Let's add some more fun and make it a real-time multi-users applications.</p>
+        <p style="font-size: 20px;color:pink;">Players register the virtual meeting. When one player wins, the two others are notified with Game Over</p>
+
+        <div style="display:inline-block;float:left;width: 400px;" >
+            <iframe src="BSBingo.html#playing_game" width="400px" height="500px" name="myFrame" id="myFrame"></iframe>
+        </div>
+        <div style="display:inline-block;float:left;width:25px"><br></div>
+        <div style="display:inline-block;float:left;width: 400px;" >
+            <iframe src="BSBingo.html#playing_game" width="400px" height="500px" name="myFrame" id="myFrame"></iframe>
+        </div>
+
+        <div style="display:inline-block;float:right;width: 400px;" >
+            <iframe src="BSBingo.html#playing_game" width="400px" height="500px" name="myFrame" id="myFrame"></iframe>
+        </div>
+        </div>
       </div>     
 
       <!-- Multiplayer -->
@@ -263,14 +301,16 @@ in game-view.js
       <!-- Conclusion -->
       <div id="conclusion" class="step section" data-x="-2953" data-y="-327" data-scale="3">
         <h2>Conclusion</h2>
+        <div style="font-size: 20px">
         <b>Same your project in github (optional)</b><br/>
 git init<br/>
 git add -A<br/>
 git commit -m "my changes"<br/>
-git remote add origin https://github.com/<yourGithubUsername>/KissingTurtlesGreach.git<br/>
+git remote add origin https://github.com/yourGithubUsername/KissingTurtlesGreach.git<br/>
 git push -u origin master<br/>
-      </div>
+       </div>
     </div>
+
     <div class="hint">
       <p>Use a spacebar or arrow keys to navigate</p>
     </div>
