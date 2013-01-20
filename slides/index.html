@@ -168,9 +168,9 @@ var ctx = canvas.getContext('2d');</code></pre>
       </div>
 
       <div id="scaffolding-4" class="step slide" data-x="2753" data-y="2277" data-scale="0.6">
-        <h2>Scaffold with HTML5 mobile plugin</h2>
+        <h2>Step1: Scaffold with ...</h2>
         <div style="display:inline-block;float:left;width:60%">
-        <a href="http://3musket33rs.github.com/">3musket33rs</a>
+        <a href="http://3musket33rs.github.com/">3musket33rs plugin</a>
         <div style="font-size: 20px">
         <b>1: Plugin dependencies</b> in BuildConfig.groovy
 <pre>grails.plugin.location."html5-mobile-scaffolding" = <br/>"../html5-mobile-scaffolding"</pre>
@@ -215,7 +215,7 @@ in js console type
       </div>
 
       <div id="scaffolding-7" class="step slide" data-x="2093" data-y="3231" data-scale="0.6">
-        <h2>Take just what we need...</h2>
+        <h2>Step2: Take just what we need...</h2>
         <div style="font-size: 20px;">
           1. in UrlMappings.groovy remove: "/"(view:"/index")<br/>
           2. in BuildConfig.groovy remove:
@@ -236,42 +236,282 @@ in js console type
       </div>
 
       <div id="scaffolding-8" class="step slide" data-x="1433" data-y="3231" data-scale="0.6">
-        <h2>Resign main page<h2>
-        <div style="float: left; font-size: 20px; text-align: left; display: inline-block; width: 50%">
+        <h2>Step3: Redesign main page<h2>
+        with HTML5<br/>
+        <div style="float: left; font-size: 20px; text-align: left; display: inline-block; width: 40%">
           <b>Play button</b><br/>
-          1. in indext.html add new section "start-game" + images
+          In indext.html add new section "start-game" with a button id=play
           <pre> > git checkout step3</pre>
-          2. in <b>kissingturtles.views.game-view.js</b><br/>
-          <pre>$('#play').live('click tap', function (e) {
-        $.mobile.changePage($("#section-list-game"));
-    });</pre>
-          <b>Create canvas</b><br/>
-          3. in "section-show-game" section remove form element<br/>
-          4. add canvas<br/>
-          5. include ktDraw.js<br>
-          <b>Did you mess up?</b>
-          <pre> > git checkout step4</pre>
-        </div>
+          to get images !</br>
+
+        </pre>
+      </div>
           <div style="float:right;font-size:30px;text-align:right;display:inline-block;">
             <img src="images/mainpage.png"  width="400px" height="500px" name="myFrame" id="myFrame"></img>
         </div>
       </div>
+      
+      <div id="scaffolding-8.1" class="step slide" data-x="1500" data-y="3300" data-scale="0.06">
+      <div style="float: left; font-size: 20px;"> 
+      <b>HTML section for start-game</b>
+      <pre style="height:40%">
+&lt;section data-role=&quot;page&quot; id=&quot;start-game&quot;&gt;<br/>    &lt;div data-role=&quot;header&quot; data-position=&quot;fixed&quot;&gt;<br/>        &lt;h1&gt;Kissing Turtles&lt;/h1&gt;<br/>    &lt;/div&gt;<br/><br/>    &lt;div class=&quot;center-wrapper&quot; data-role=&quot;content&quot; id=&quot;start-presentation&quot;&gt;<br/>        &lt;div&gt;<br/>            &lt;img width=&quot;20%&quot; src=&quot;images/game/turtle.png&quot;/&gt;<br/>            &lt;img width=&quot;20%&quot; src=&quot;images/game/pig.png&quot;/&gt;<br/>        &lt;/div&gt;<br/>        &lt;div data-theme=&quot;a&quot; class=&quot;center-wrapper&quot; data-content-theme=&quot;a&quot;&gt;<br/>            &lt;textarea readonly&gt;Franklin and Emily have a rendez-vous. Help them to meet at the love tree.&lt;/textarea&gt;&lt;/div&gt;<br/>        &lt;div&gt;<br/>            &lt;ul data-role=&quot;listview&quot; data-inset=&quot;true&quot;&gt;<br/>                &lt;li&gt;&lt;a id=&quot;play&quot; data-role=&quot;button&quot; data-inline=&quot;true&quot;&gt;Play&lt;/a&gt;&lt;/li&gt;<br/>            &lt;/ul&gt;<br/>        &lt;/div&gt;<br/>    &lt;/div&gt;<br/><br/>    &lt;div data-role=&quot;footer&quot; data-position=&quot;fixed&quot;&gt;<br/>        &lt;h4&gt;Greach 2013&lt;/h4&gt;<br/>    &lt;/div&gt;<br/>&lt;/section&gt;
+      </pre>  
+    </div>
 
-      <div id="scaffolding-9" class="step slide" data-x="773" data-y="3231" data-scale="0.6">
-        <h2>How to animate</h2>
       </div>
 
+      <div id="scaffolding-9" class="step slide" data-x="773" data-y="3231" data-scale="0.6">
+        <h2>Step4: Add dynamic behaviour</h2>
+           with jQuery</br>
+        <div style="float: left; font-size: 20px; text-align: left; display: inline-block; width: 50%">
+          <b>1. User name section</b><br/>
+          Same than earlier... pure HTML5</br>
+          <b>Play button</b><br/>
+          2. In <b>kissingturtles.views.game-view.js</b><br/>
+          add click on play -> go to section-show-user<br/>
+          store on local storage user name<br/>
+          3. click on save user-> go to list<br/>
+          <pre>
+        $('#play').live('click tap', function (event) {
+          //TO DO
+         });
+        $("#submit-user").live("click tap", function(event) {
+          // TO DO save in localStorage
+        });
+          </pre>
+      </div>
+      <div style="float:right;font-size:30px;text-align:right;display:inline-block;">
+            <img src="images/user_screen.png"  width="350px" name="myFrame" id="myFrame"></img>
+        </div>
+      </div>
+
+      <div id="scaffolding-9.1" class="step slide" data-x="800" data-y="3300" data-scale="0.06">
+      <div style="float: left; font-size: 20px;"> 
+      <pre style="height:40%;width:80%">
+&lt;section data-role=&quot;page&quot; id=&quot;section-show-user&quot;&gt;<br/>    &lt;div data-role=&quot;header&quot; id=&quot;show-user&quot; data-position=&quot;fixed&quot;&gt;<br/>        &lt;a href=&quot;#start-game&quot; data-transition=&quot;slide&quot; data-icon=&quot;arrow-l&quot;&gt;Cancel&lt;/a&gt;<br/>        &lt;h1&gt;Who are you?&lt;/h1&gt;<br/>    &lt;/div&gt;<br/>    &lt;ul data-role=&quot;listview&quot; data-inset=&quot;true&quot;&gt;<br/>        &lt;li data-role=&quot;fieldcontain&quot;&gt;<br/>            &lt;label for=&quot;input-user-name&quot;&gt;What's your name ?&lt;/label&gt;<br/>            &lt;input type=&quot;text&quot; class=&quot;validate[required]&quot; name=&quot;name&quot; id=&quot;input-user-name&quot; value=&quot;&quot;/&gt;<br/>        &lt;/li&gt;<br/>    &lt;/ul&gt;<br/><br/>    &lt;div data-role=&quot;footer&quot; data-position=&quot;fixed&quot;&gt;<br/>        &lt;div data-role=&quot;navbar&quot;&gt;<br/>            &lt;ul&gt;<br/>                &lt;li&gt;&lt;a href=&quot;&quot; data-role=&quot;button&quot; data-transition=&quot;slide&quot; data-icon=&quot;save&quot;<br/>                       id=&quot;submit-user&quot;&gt;Save&lt;/a&gt;&lt;/li&gt;<br/>            &lt;/ul&gt;<br/>        &lt;/div&gt;<br/>    &lt;/div&gt;<br/>&lt;/section&gt;
+      </pre> 
+      </div> 
+    </div>
+
+     <div id="scaffolding-9.2" class="step slide" data-x="900" data-y="3300" data-scale="0.06">
+      <div style="float: left; font-size: 20px;"> 
+      <b>Click on play</b>
+      <pre>
+    //----------------------------------------------------------------------------------------
+    //   Click on Play brings you here
+    //----------------------------------------------------------------------------------------
+    $('#play').live('click tap', function (event) {
+        var id = localStorage.getItem("KissingTurtles.UserId");
+        if (id) {
+            $.mobile.changePage($("#section-list-game"));
+            that.listButtonClicked.notify();
+        } else {
+            $.mobile.changePage($("#section-show-user"));
+        }
+    });
+</pre>
+<b>Click on save user</b>
+<pre>
+    //----------------------------------------------------------------------------------------
+    //   Click on Save on user page. Your name is asked only once.
+    //----------------------------------------------------------------------------------------
+    $("#submit-user").live("click tap", function(event) {
+        var name = $('#input-user-name').val();
+        localStorage.setItem("KissingTurtles.UserId", name);
+        $.mobile.changePage($("#section-list-game"));
+    });
+</pre>
+</div>
+      </div>      
+
       <div id="scaffolding-10" class="step slide" data-x="773" data-y="2751" data-scale="0.6">
-        <h2>requestAnimationFrame</h2>
+          <h2>Step4: Add canvas</h2>
+          <div style="float: left; font-size: 20px;"> 
+          <b>Create canvas</b><br/>
+          3. in "section-show-game" section remove form element<br/>
+          4. add canvas<br/>
+          5. include ktDraw.js<br>
+          6. window.onload to write in canvas<br>
+          <b>Did you mess up?</b>
+          <pre> > git checkout step4</pre>
+        </div>
       </div>
 
       <div id="scaffolding-11" class="step slide" data-x="1433" data-y="2751" data-scale="0.6">
-        <h2>Let's animate</h2>
-        <a href="../canvas/ktAnimate.js">Edit</a>
-        <a href="../canvas/animate.html">Test</a>
-      </div>  
+        <h2>Step5: Adding server side call</h2>
+        <div style="float: left; font-size: 20px;"> 
+        <b>Adding behabiour for create button</b><br/>
+        . get name from localStorage<br/>
+        . notify controller of create
+        <pre>
+    $("#add-game").live('click tap', function (event) {
+      //TO DO
+    });
+        </pre>
+        <b>Server side GameController</b></br>
+        . generate walls</br>
+        . generate turtles random positions</br>
 
-      <div id="scaffolding-12" class="step slide" data-x="2093" data-y="2751" data-scale="0.6">
+        <b>Callback on created</b></br>
+        . initialize ktDraw</br>
+        . move to show-game section
+        <pre>
+    that.model.createdItem.attach(function (data, event) {
+      //TO DO
+    });
+        </pre>  
+
+        <b>Did you mess up?</b>
+        <pre> > git checkout step5</pre>
+      </div>
+      </div>
+
+     <div id="scaffolding-11.1" class="step slide" data-x="1500" data-y="2751" data-scale="0.06">
+      <div style="float: left; font-size: 20px;"> 
+      <b>Click on create</b>
+        <pre>
+    //----------------------------------------------------------------------------------------
+    //   Click on 'Create your own game' brings you here
+    //----------------------------------------------------------------------------------------
+    $("#add-game").live('click tap', function (event) {
+        event.stopPropagation();
+        var obj = {user1: localStorage.getItem("KissingTurtles.UserId")};
+        var newElement = {
+            game: JSON.stringify(obj)
+        };
+        that.createButtonClicked.notify(newElement, event);
+    });
+        </pre>
+<b>Callback on created</b>
+<pre>
+    //----------------------------------------------------------------------------------------
+    //   Callback after first player create a new game. First player will play as Franklin.
+    //----------------------------------------------------------------------------------------
+    that.model.createdItem.attach(function (data, event) {
+        if (data.item.errors) {
+            $.each(data.item.errors, function (index, error) {
+                $('#input-game-' + error.field).validationEngine('showPrompt', error.message, 'fail');
+            });
+            event.stopPropagation();
+        } else if (data.item.message) {
+            showGeneralMessage(data, event);
+        } else {
+            var confAsString = data.item.mazeDefinition;
+            var conf = JSON.parse(confAsString);
+
+            that.currentMaze = conf;
+            that.draw = ktDraw(document.getElementById('canvas'), conf, that.currentMaze.steps[0]);
+            that.player = "franklin";
+            that.gameId = data.item.id;
+
+            renderElement(data.item);
+            showElement(data.item);
+
+            $("#list-game").listview('refresh');
+            $.mobile.changePage($("#section-show-game"));
+        }
+    });
+</pre>
+</div>
+      </div>   
+    <div id="scaffolding-12" class="step slide" data-x="2093" data-y="2751" data-scale="0.6">
+        <h2>Step6: I'd like to move it</h2>
+        <div style="float: left; font-size: 20px;"> 
+        <b>Adding behabiour for execute button</b><br/>
+        
+
+        <b>Server side GameController</b></br>
+        . move up by 3</br>
+        . is actual Grovvy code
+        <pre>
+        def run() {
+        ...
+          def binding = new Binding([
+                  turtle: turtle,
+                  left: dsl.Direction.left,
+                  right: dsl.Direction.right,
+                  down: dsl.Direction.down,
+                  up: dsl.Direction.up,
+                  move: turtle.&move,
+                  by: turtle.&by
+          ])
+          def shell = new GroovyShell(binding)
+          shell.evaluate(script)
+          def result = binding.getVariable('turtle').result
+        ... 
+        </pre>
+        <b>Did you mess up?</b>
+        <pre> > git checkout step6</pre>
+      </div>      
+    </div>
+
+    <div id="scaffolding-12.1" class="step slide" data-x="2200" data-y="2751" data-scale="0.3">
+      <div style="float: left; font-size: 20px;"> 
+      <b>Click on execute</b>
+        <pre>
+    //----------------------------------------------------------------------------------------
+    //   Click on Execute my DSL script brings you here
+    //----------------------------------------------------------------------------------------
+    $("#submit-game").live("click tap", function(event) {
+        var dslInput = $('#input-move-name').val();
+        var gameId = that.gameId;
+        that.executeButtonClicked.notify({title: "KissingTurtles", 
+          content: dslInput, 
+          gameId: gameId, 
+          user: localStorage.getItem("KissingTurtles.UserId")});
+    });
+        </pre>
+<b>Callback on executed</b>
+    <pre>
+    //----------------------------------------------------------------------------------------
+    //    Callback to display the maze after execute method
+    //----------------------------------------------------------------------------------------
+    that.model.executed.attach(function (data, event) {
+        var myGameObject = data.item;
+        $.each(myGameObject.configuration.steps, function (key, value) {
+            that.draw(value, function () {
+                var win = myGameObject.configuration.winningAnimation;
+                if (win) {
+                    that.draw.win(win.x, win.y);
+                }
+            });
+        });
+    });
+   </pre>  
+ </div>
+</div>
+    <div id="scaffolding-12bis" class="step slide" data-x="2093" data-y="2751" data-scale="0.6">
+        <h2>Step6: I'd like to move it</h2>
+        <div style="float: left; font-size: 20px;"> 
+        <b>Adding behabiour for execute button</b><br/>
+        
+
+        <b>Server side GameController</b></br>
+        . move up by 3</br>
+        . is actual Grovvy code
+        <pre>
+        def run() {
+        ...
+          def binding = new Binding([
+                  turtle: turtle,
+                  left: dsl.Direction.left,
+                  right: dsl.Direction.right,
+                  down: dsl.Direction.down,
+                  up: dsl.Direction.up,
+                  move: turtle.&move,
+                  by: turtle.&by
+          ])
+          def shell = new GroovyShell(binding)
+          shell.evaluate(script)
+          def result = binding.getVariable('turtle').result
+        ... 
+        </pre>
+        <b>Did you mess up?</b>
+        <pre> > git checkout step6</pre>
+      </div>      
+    </div>
+      <!--div id="scaffolding-12" class="step slide" data-x="2093" data-y="2751" data-scale="0.6">
         <h2>Multi-Users, Real Time</h2>
         <div style="float: left; font-size: 20px; text-align: left; width: 1250px;">
         <p>Back to our BS Bingo game, single-user, client side. </p>
@@ -291,7 +531,7 @@ in js console type
             <iframe src="BSBingo.html#playing_game" width="400px" height="500px" name="myFrame" id="myFrame"></iframe>
         </div>
         </div>
-      </div>     
+      </div-->     
 
       <!-- Multiplayer -->
       <div id="multiplayer" class="step section" data-x="-1763" data-y="2427" data-scale="3">
