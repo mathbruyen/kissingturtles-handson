@@ -210,7 +210,15 @@ in js console type
 <b>Clear data</b><br/>
 <pre> > localStorage.clear()</pre/>
         </div>
+      </div>
+
+      <div id="scaffolding-6.1" class="step slide" data-x="2800" data-y="3300" data-scale="0.05">
+        <h2>Offline mode</h2>
         <img style="float:right;width:100%" src="images/figures/figure2.png" />
+      </div>
+
+      <div id="scaffolding-6.2" class="step slide" data-x="2950" data-y="3300" data-scale="0.05">
+        <h2>Back online</h2>
         <img style="float:right;width:100%" src="images/figures/figure3.png" />
       </div>
 
@@ -224,9 +232,8 @@ in js console type
           3. remove offline caching in game-bootstrap.js
           <pre> options: { 
             offline: false,
-            synchronization: true 
-          }
-          </pre>
+            eventPush: true 
+          }</pre>
           4. Change view behaviour<br/>
           delete index.html<br/>
           rename game-index.html into index.html<br/>
@@ -511,32 +518,278 @@ in js console type
         <pre> > git checkout step6</pre>
       </div>      
     </div>
-      <!--div id="scaffolding-12" class="step slide" data-x="2093" data-y="2751" data-scale="0.6">
-        <h2>Multi-Users, Real Time</h2>
-        <div style="float: left; font-size: 20px; text-align: left; width: 1250px;">
-        <p>Back to our BS Bingo game, single-user, client side. </p>
-        <p style="font-size: 20px;color:pink;" >Suppose we want to play cross meeting rooms? or you prefer a push notification rather that standing up ;)</p>
-        <p>Let's add some more fun and make it a real-time multi-users applications.</p>
-        <p style="font-size: 20px;color:pink;">Players register the virtual meeting. When one player wins, the two others are notified with Game Over</p>
-
-        <div style="display:inline-block;float:left;width: 400px;" >
-            <iframe src="BSBingo.html#playing_game" width="400px" height="500px" name="myFrame" id="myFrame"></iframe>
-        </div>
-        <div style="display:inline-block;float:left;width:25px"><br></div>
-        <div style="display:inline-block;float:left;width: 400px;" >
-            <iframe src="BSBingo.html#playing_game" width="400px" height="500px" name="myFrame" id="myFrame"></iframe>
-        </div>
-
-        <div style="display:inline-block;float:right;width: 400px;" >
-            <iframe src="BSBingo.html#playing_game" width="400px" height="500px" name="myFrame" id="myFrame"></iframe>
-        </div>
-        </div>
-      </div-->     
-
+ 
       <!-- Multiplayer -->
       <div id="multiplayer" class="step section" data-x="-1763" data-y="2427" data-scale="3">
         <h2>Multiplayer</h2>
       </div>
+      <div id="multiplayer-1" class="step slide" data-x="-2753" data-y="2277" data-scale="0.6">
+        <h2>Multi-Users, Real Time</h2>
+        <div style="float: left; font-size: 20px; text-align: left; width: 850px;">
+        <p>Let's add some more fun and make it a real-time multi-users applications.</p>
+        <p style="font-size: 20px;color:pink;">First player (Franklin) is creating the game. The other player (Emily), joins the game...</p>
+
+        <div style="display:inline-block;float:left;width: 400px;" >
+            <iframe src="http://kissingturtles.cloudfoundry.com/" width="400px" height="500px" name="myFrame" id="myFrame"></iframe>
+        </div>
+        <div style="display:inline-block;float:left;width:25px"><br></div>
+
+        <div style="display:inline-block;float:right;width: 400px;" >
+            <iframe src="http://kissingturtles.cloudfoundry.com/" width="400px" height="500px" name="myFrame" id="myFrame"></iframe>
+        </div>
+        </div>
+      </div>
+
+    
+      <div id="multiplayer-2" class="step slide" data-x="-2093" data-y="2277" data-scale="0.6">
+        <h2>Event-push with Atmosphere</h2>
+        <div style="float: left; font-size: 20px; text-align: left; display: inline-block; width: 30%"><br/>
+        <p></p>
+        <p></p>
+        <p></p>        
+        </div>
+    </div>
+
+      <div id="multiplayer-3" class="step slide" data-x="-1433" data-y="2277" data-scale="0.6">
+        <h2>Step7: Franklin creates the game</h2>
+        <div style="font-size: 20px">
+        <b>Push is activated by default</b>
+        <pre>options: {
+            offline: false,
+            eventPush: true
+        }</pre>
+        <b>Server side</b><br/>
+        declare the events in grails-app/conf/GameEvents.groovy
+        <pre>events = {
+      'save-game' browser:true
+      'update-game' browser:true
+      'delete-game' browser:true
+    }</pre>
+        <b>In GameController, raise the event</b>
+        <pre>event topic:"save-game", data: gameInstance</pre>
+        <b>Client side processing</b><br/>
+        in web-app/js/grails/mobile/push/pushmanager.js,<br/>
+        <pre>grailsEvents.on('save-' + domainName , function (data) {
+            if (!model.getItems()[data.id]) {
+                data.NOTIFIED = true;
+                if (options.offline) {
+                    store.store(data);
+                }
+                model.createItem(data);
+            }
+        });</pre>
+        </div>
+      </div>
+
+      <div id="multiplayer-4" class="step slide" data-x="-773" data-y="2277" data-scale="0.6">
+        <h2>Step7: Franklin already knows...</h2>
+        <div style="font-size: 20px">
+        he doesn't want to be notified!<br/>
+        <b>in web-app/js/grails/mobile/push/pushmanager.js</b><br/>
+        <b>Back on created callback</b>
+        <pre>
+    //----------------------------------------------------------------------------------------
+    //   Callback after first player create a new game. First player will play as Franklin.
+    //----------------------------------------------------------------------------------------
+    that.model.createdItem.attach(function (data, event) {
+        if (data.item.errors) {
+     ....
+        } else {
+        // TODO add check if we're notified data.item.NOTIFIED
+        }
+    });          
+        </pre>
+        </div>
+      </div>
+
+    <div id="multiplayer-5" class="step slide" data-x="-773" data-y="2751" data-scale="0.6">
+      <h2>Step7: Franklin already knows...</h2>
+      <div style="font-size: 20px">
+        <b>Back on created callback</b>
+        <pre>
+    //----------------------------------------------------------------------------------------
+    //   Callback after first player create a new game. First player will play as Franklin.
+    //----------------------------------------------------------------------------------------
+    that.model.createdItem.attach(function (data, event) {
+        if (data.item.errors) {
+            $.each(data.item.errors, function (index, error) {
+                $('#input-game-' + error.field).validationEngine('showPrompt', error.message, 'fail');
+            });
+            event.stopPropagation();
+        } else if (data.item.message) {
+            showGeneralMessage(data, event);
+        } else {
+            var confAsString = data.item.mazeDefinition;
+            var conf = JSON.parse(confAsString);
+            if (!data.item.NOTIFIED) {
+                that.currentMaze = conf;
+                that.draw = ktDraw(document.getElementById('canvas'), conf, that.currentMaze.steps[0]);
+                that.player = "franklin";
+                that.gameId = data.item.id;
+            }
+            renderElement(data.item);
+            showElement(data.item);
+
+            $("#list-game").listview('refresh');
+            if (!data.item.NOTIFIED) {
+                $.mobile.changePage($("#section-show-game"));
+            }
+        }
+    }); </pre>
+        <b>Get latest from github?</b>
+        <pre> > git checkout step7</pre>
+        </div>
+    </div>
+
+      <div id="multiplayer-6" class="step slide" data-x="-773" data-y="3231" data-scale="0.6">
+        <h2>Step8: Emily joins</h2>
+        <div style="font-size: 20px">
+         Same idea with <b>update</b> event<br/>
+         <b>1. write onclick</b> for element in the list</br>
+         get userId from localStorage and notify update</br>
+         <pre>
+    that.elements.show.live('click tap', function (event) {
+      //TO DO
+    });</pre>
+         <b>2. Server side</b><br/>
+        declare the update-game event in grails-app/conf/GameEvents.groovy<br/>
+        <b>3. In GameController, raise the update-game event</b><br/>
+        <b>4. client side catching</b><br/>
+        in web-app/js/grails/mobile/push/pushmanager.js,<br/>
+        <b>5. Callback on updated</b><br/>
+        to exclude myself from notification
+      </div>
+      </div>
+
+      <div id="multiplayer-7" class="step slide" data-x="-1433" data-y="3231" data-scale="0.6">
+        <h2>Step8: Emily joins</h2>
+      <div style="font-size: 20px">
+        <b>On click element of the list</b>
+         <pre>
+    //----------------------------------------------------------------------------------------
+    //   Click on an element of the list to join the game. Second player is Emily.
+    //----------------------------------------------------------------------------------------
+    that.elements.show.live('click tap', function (event) {
+        event.stopPropagation();
+        var gameId = $(event.currentTarget).attr('data-id');
+        if(gameId) {
+            var obj = {user2: localStorage.getItem("KissingTurtles.UserId"), gameId: gameId};
+            var newElement = {
+                game: JSON.stringify(obj)
+            };
+            that.updateButtonClicked.notify(newElement, event);
+        }
+    });</pre>
+        </div>
+      </div>
+
+      <div id="multiplayer-8" class="step slide" data-x="-2093" data-y="3231" data-scale="0.6">
+        <h2>Step8: Emily joins</h2>
+      <div style="font-size: 20px">
+        <b>Callback on updated</b>
+        <pre>
+    //----------------------------------------------------------------------------------------
+    //   Callback after joining the game
+    //----------------------------------------------------------------------------------------
+    that.model.updatedItem.attach(function (data, event) {
+        if (data.item.errors) {
+            $.each(data.item.errors, function(index, error) {
+                $('#input-game-' + error.field).validationEngine('showPrompt',error.message, 'fail');
+            });
+            event.stopPropagation();
+        } else if (data.item.message) {
+            showGeneralMessage(data, event);
+        } else {
+            // In case of Emily or Franklin we go here
+            var confAsString = data.item.mazeDefinition;
+            var conf = JSON.parse(confAsString);
+            that.currentMaze = conf;
+            updateElement(data.item);
+
+            if (!data.item.NOTIFIED) {
+                // For Emily game, initialize canvas
+                that.draw = ktDraw(document.getElementById('canvas'), conf, that.currentMaze.steps[0]);
+                that.player = "emily";
+                that.gameId = data.item.id;
+                $.mobile.changePage($("#section-show-game"));
+            } else if (that.player == "franklin" && that.gameId == data.item.id) {
+                // For Franklin game
+                that.draw({emily: that.currentMaze.steps[0].emily});
+            } else {
+                $("#list-game").listview('refresh');
+            }
+        }
+    });
+
+        </pre>
+        <b>Get latest from github?</b>
+        <pre> > git checkout step8</pre>
+        </div>
+      </div>
+    
+
+      <div id="multiplayer-9" class="step slide" data-x="-2753" data-y="3231" data-scale="0.6">
+        <h2>Step9: My friend moves</h2>
+        <div style="font-size: 20px">
+        <b>1. Define new event</b> in grails-app/conf/GameEvents.groovy
+        <pre>events = {
+              'save-game' browser:true
+              'update-game' browser:true
+              'delete-game' browser:true
+              "execute-game" browser: true
+            }</pre>
+        <b>2. GameController.execute</b>, raise event execute-game<br/>
+        <b>3. Client side</b> catch event execute-game <br/>
+        in manager-bootstap.js
+        <pre>
+    managerObject.domainsObjects['game'].push.grailsEvents.on('execute-game', function (data) {
+        var dataParsed = JSON.parse(data);
+        dataParsed.NOTIFIED = true;
+        managerObject.domainsObjects['game'].model.execute(dataParsed);
+    });</pre>
+      </div>
+      </div>     
+
+      <div id="multiplayer-10" class="step slide" data-x="-2753" data-y="2751" data-scale="0.6">
+         <h2>Step9: My friend moves</h2>
+        <div style="font-size: 20px">
+        <b>4. On executed</b> refresh canvas<br/>
+        <pre>
+    //----------------------------------------------------------------------------------------
+    //    Callback to display the maze after execute method
+    //----------------------------------------------------------------------------------------
+    that.model.executed.attach(function (data, event) {
+        // only for my game
+        if (that.gameId == data.item.configuration.id) {
+            // refresh me if it's not myself pls
+            if (!data.item.NOTIFIED || that.player != data.item.configuration.player) {
+                var myGameObject = data.item;
+                $.each(myGameObject.configuration.steps, function(key, value) {
+                    that.draw(value, function () {
+                        var win = myGameObject.configuration.winningAnimation;
+                        if (win) {
+                            that.draw.win(win.x, win.y);
+                        }
+                    });
+                });
+            }
+        }
+    });
+        </pre>
+        <b>Get latest from github?</b>
+        <pre> > git checkout step9</pre>
+      </div>
+      </div>
+
+<!--       <div id="multiplayer-11" class="step slide" data-x="-2093" data-y="2751" data-scale="0.6">
+        <h2></h2>
+        <div style="float: left; font-size: 20px;"> 
+
+        </div>
+      </div>
+
+<div id="multiplayer-12" class="step slide" data-x="-1433" data-y="2751" data-scale="0.6">
+</div> -->
 
       <!-- Conclusion -->
       <div id="conclusion" class="step section" data-x="-2953" data-y="-327" data-scale="3">
