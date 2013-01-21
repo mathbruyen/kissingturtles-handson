@@ -131,12 +131,12 @@ var ctx = canvas.getContext('2d');</code></pre>
         grails2.1+<br/>
         html5-mobile-scaffold<br/>
         <b>KissingTurtlesGreach Step by Step</b><br/>
-        <pre> > git clone https://github.com/corinnekrych/KissingTurtlesGreach.git</pre>
-        <span style="font-size: 20px;"><img width="5%" src="images/Warning-icon.png"/><b> Don't loose your hard work</span></b><br/>
+        <pre> &gt; git clone https://github.com/corinnekrych/KissingTurtlesGreach.git</pre>
+        <span style="font-size: 20px;"><img width="5%" src="images/Warning-icon.png"/><b> Don't loose your hard work</b></span><br/>
         Before getting code from github branches, backup!<br/>
-        <pre> > git checkout step1</pre>
+        <pre> &gt; git checkout step1</pre>
         <b>KissingTurtles tutorial</b><br/>
-        <pre> > git clone https://github.com/mathbruyen/kissingturtles-handson.git</pre>
+        <pre> &gt; git clone https://github.com/mathbruyen/kissingturtles-handson.git</pre>
         </div>
       </div>
 
@@ -157,11 +157,11 @@ var ctx = canvas.getContext('2d');</code></pre>
         <h2>New project</h2><br/>
         <div style="font-size: 20px">
         <b>Create a new Grails app</b>
-        <pre> > grails create-app KissingTurtlesGreach</pre>
+        <pre> &gt; grails create-app KissingTurtlesGreach</pre>
         <b>Integrate with you favourite editor ;-) </b>
-        <pre> > grails integrate-with --intellij</pre>
+        <pre> &gt; grails integrate-with --intellij</pre>
         <b>Only one domain class needed</b>
-        <pre> > grails create-domain-class kissingturtles.Game</pre>
+        <pre> &gt; grails create-domain-class kissingturtles.Game</pre>
         add attribute to your domain class:<br/>
         String name<br/>
       </div>
@@ -175,10 +175,10 @@ var ctx = canvas.getContext('2d');</code></pre>
         <b>1: Plugin dependencies</b> in BuildConfig.groovy
 <pre>grails.plugin.location."html5-mobile-scaffolding" = <br/>"../html5-mobile-scaffolding"</pre>
 <b>2: New scaffold script</b><br/>
-<pre> >grails html-generate-all kissingturtles.Game
+<pre> &gt;grails html-generate-all kissingturtles.Game
 > grails run-app</pre>
 <b>You're lost?</b>
-<pre> > git checkout step1</pre>
+<pre> &gt; git checkout step1</pre>
         </div>
         </div>
         <img style="width:40%" src="images/figures/figure0.png" />
@@ -187,7 +187,7 @@ var ctx = canvas.getContext('2d');</code></pre>
       <div id="scaffolding-5" class="step slide" data-x="2753" data-y="2751" data-scale="0.6">
         <h2>What was generated?</h2>
         <div style="font-size: 20px">
-          => controllers</b><br/>
+          => controllers<br/>
           => views generated in web-app folder: no GSP!<br/>
           2 parts js framework, grails.mobile package<br/>
           and your domain driven package: <b>kissingturtles.views.game-view.js</b><br/>
@@ -199,25 +199,25 @@ var ctx = canvas.getContext('2d');</code></pre>
         <h2>Offline mode</h2>
         <div style="font-size: 20px">
 <b>CRUD easy</b><br/>
-Try CRUD oprations, add new game.</br/>
+Try CRUD oprations, add new game.<br/>
 <b>Am I loosing my data offline?</b><br/> 
 in js console type
-<pre> > localStorage</pre/>
+<pre> &gt; localStorage</pre>
 <b>Test it</b><br/>
 1. turn off wifi or work offline menu in FF<br/>
 2. add a new game<br/>
 3. back offline<br/>
 <b>Clear data</b><br/>
-<pre> > localStorage.clear()</pre/>
+<pre> &gt; localStorage.clear()</pre>
         </div>
       </div>
 
-      <div id="scaffolding-6.1" class="step slide" data-x="2800" data-y="3300" data-scale="0.05">
+      <div id="scaffolding-6-1" class="step slide" data-x="2800" data-y="3300" data-scale="0.05">
         <h2>Offline mode</h2>
         <img style="float:right;width:100%" src="images/figures/figure2.png" />
       </div>
 
-      <div id="scaffolding-6.2" class="step slide" data-x="2950" data-y="3300" data-scale="0.05">
+      <div id="scaffolding-6-2" class="step slide" data-x="2950" data-y="3300" data-scale="0.05">
         <h2>Back online</h2>
         <img style="float:right;width:100%" src="images/figures/figure3.png" />
       </div>
@@ -238,27 +238,25 @@ in js console type
           delete index.html<br/>
           rename game-index.html into index.html<br/>
           <b>You loose your path?</b><br/>
-          <pre> > git checkout step2</pre>
+          <pre> &gt; git checkout step2</pre>
         </div>
       </div>
 
       <div id="scaffolding-8" class="step slide" data-x="1433" data-y="3231" data-scale="0.6">
-        <h2>Step3: Redesign main page<h2>
+        <h2>Step3: Redesign main page</h2>
         with HTML5<br/>
         <div style="float: left; font-size: 20px; text-align: left; display: inline-block; width: 40%">
           <b>Play button</b><br/>
           In indext.html add new section "start-game" with a button id=play
-          <pre> > git checkout step3</pre>
-          to get images !</br>
-
-        </pre>
+          <pre> &gt; git checkout step3</pre>
+          to get images !<br/>
       </div>
           <div style="float:right;font-size:30px;text-align:right;display:inline-block;">
-            <img src="images/mainpage.png"  width="400px" height="500px" name="myFrame" id="myFrame"></img>
+            <img src="images/mainpage.png"  width="400px" height="500px"/>
         </div>
       </div>
       
-      <div id="scaffolding-8.1" class="step slide" data-x="1500" data-y="3300" data-scale="0.06">
+      <div id="scaffolding-8-1" class="step slide" data-x="1500" data-y="3300" data-scale="0.06">
       <div style="float: left; font-size: 20px;"> 
       <b>HTML section for start-game</b>
       <pre style="height:40%">
@@ -270,10 +268,10 @@ in js console type
 
       <div id="scaffolding-9" class="step slide" data-x="773" data-y="3231" data-scale="0.6">
         <h2>Step4: Add dynamic behaviour</h2>
-           with jQuery</br>
+           with jQuery<br/>
         <div style="float: left; font-size: 20px; text-align: left; display: inline-block; width: 50%">
           <b>1. User name section</b><br/>
-          Same than earlier... pure HTML5</br>
+          Same than earlier... pure HTML5<br/>
           <b>Play button</b><br/>
           2. In <b>kissingturtles.views.game-view.js</b><br/>
           add click on play -> go to section-show-user<br/>
@@ -289,11 +287,11 @@ in js console type
           </pre>
       </div>
       <div style="float:right;font-size:30px;text-align:right;display:inline-block;">
-            <img src="images/user_screen.png"  width="350px" name="myFrame" id="myFrame"></img>
+            <img src="images/user_screen.png"  width="350px"/>
         </div>
       </div>
 
-      <div id="scaffolding-9.1" class="step slide" data-x="800" data-y="3300" data-scale="0.06">
+      <div id="scaffolding-9-1" class="step slide" data-x="800" data-y="3300" data-scale="0.06">
       <div style="float: left; font-size: 20px;"> 
       <pre style="height:40%;width:80%">
 &lt;section data-role=&quot;page&quot; id=&quot;section-show-user&quot;&gt;<br/>    &lt;div data-role=&quot;header&quot; id=&quot;show-user&quot; data-position=&quot;fixed&quot;&gt;<br/>        &lt;a href=&quot;#start-game&quot; data-transition=&quot;slide&quot; data-icon=&quot;arrow-l&quot;&gt;Cancel&lt;/a&gt;<br/>        &lt;h1&gt;Who are you?&lt;/h1&gt;<br/>    &lt;/div&gt;<br/>    &lt;ul data-role=&quot;listview&quot; data-inset=&quot;true&quot;&gt;<br/>        &lt;li data-role=&quot;fieldcontain&quot;&gt;<br/>            &lt;label for=&quot;input-user-name&quot;&gt;What's your name ?&lt;/label&gt;<br/>            &lt;input type=&quot;text&quot; class=&quot;validate[required]&quot; name=&quot;name&quot; id=&quot;input-user-name&quot; value=&quot;&quot;/&gt;<br/>        &lt;/li&gt;<br/>    &lt;/ul&gt;<br/><br/>    &lt;div data-role=&quot;footer&quot; data-position=&quot;fixed&quot;&gt;<br/>        &lt;div data-role=&quot;navbar&quot;&gt;<br/>            &lt;ul&gt;<br/>                &lt;li&gt;&lt;a href=&quot;&quot; data-role=&quot;button&quot; data-transition=&quot;slide&quot; data-icon=&quot;save&quot;<br/>                       id=&quot;submit-user&quot;&gt;Save&lt;/a&gt;&lt;/li&gt;<br/>            &lt;/ul&gt;<br/>        &lt;/div&gt;<br/>    &lt;/div&gt;<br/>&lt;/section&gt;
@@ -301,7 +299,7 @@ in js console type
       </div> 
     </div>
 
-     <div id="scaffolding-9.2" class="step slide" data-x="900" data-y="3300" data-scale="0.06">
+     <div id="scaffolding-9-2" class="step slide" data-x="900" data-y="3300" data-scale="0.06">
       <div style="float: left; font-size: 20px;"> 
       <b>Click on play</b>
       <pre>
@@ -341,7 +339,7 @@ in js console type
           5. include ktDraw.js<br>
           6. window.onload to write in canvas<br>
           <b>Did you mess up?</b>
-          <pre> > git checkout step4</pre>
+          <pre> &gt; git checkout step4</pre>
         </div>
       </div>
 
@@ -356,12 +354,12 @@ in js console type
       //TO DO
     });
         </pre>
-        <b>Server side GameController</b></br>
-        . generate walls</br>
-        . generate turtles random positions</br>
+        <b>Server side GameController</b><br/>
+        . generate walls<br/>
+        . generate turtles random positions<br/>
 
-        <b>Callback on created</b></br>
-        . initialize ktDraw</br>
+        <b>Callback on created</b><br/>
+        . initialize ktDraw<br/>
         . move to show-game section
         <pre>
     that.model.createdItem.attach(function (data, event) {
@@ -370,11 +368,11 @@ in js console type
         </pre>  
 
         <b>Did you mess up?</b>
-        <pre> > git checkout step5</pre>
+        <pre> &gt; git checkout step5</pre>
       </div>
       </div>
 
-     <div id="scaffolding-11.1" class="step slide" data-x="1500" data-y="2751" data-scale="0.06">
+     <div id="scaffolding-11-1" class="step slide" data-x="1500" data-y="2751" data-scale="0.06">
       <div style="float: left; font-size: 20px;"> 
       <b>Click on create</b>
         <pre>
@@ -428,8 +426,8 @@ in js console type
         <b>Adding behabiour for execute button</b><br/>
         
 
-        <b>Server side GameController</b></br>
-        . move up by 3</br>
+        <b>Server side GameController</b><br/>
+        . move up by 3<br/>
         . is actual Grovvy code
         <pre>
         def run() {
@@ -440,8 +438,8 @@ in js console type
                   right: dsl.Direction.right,
                   down: dsl.Direction.down,
                   up: dsl.Direction.up,
-                  move: turtle.&move,
-                  by: turtle.&by
+                  move: turtle.&amp;move,
+                  by: turtle.&amp;by
           ])
           def shell = new GroovyShell(binding)
           shell.evaluate(script)
@@ -449,11 +447,11 @@ in js console type
         ... 
         </pre>
         <b>Did you mess up?</b>
-        <pre> > git checkout step6</pre>
+        <pre> &gt; git checkout step6</pre>
       </div>      
     </div>
 
-    <div id="scaffolding-12.1" class="step slide" data-x="2200" data-y="2751" data-scale="0.3">
+    <div id="scaffolding-12-1" class="step slide" data-x="2200" data-y="2751" data-scale="0.3">
       <div style="float: left; font-size: 20px;"> 
       <b>Click on execute</b>
         <pre>
@@ -494,8 +492,8 @@ in js console type
         <b>Adding behabiour for execute button</b><br/>
         
 
-        <b>Server side GameController</b></br>
-        . move up by 3</br>
+        <b>Server side GameController</b><br/>
+        . move up by 3<br/>
         . is actual Grovvy code
         <pre>
         def run() {
@@ -506,8 +504,8 @@ in js console type
                   right: dsl.Direction.right,
                   down: dsl.Direction.down,
                   up: dsl.Direction.up,
-                  move: turtle.&move,
-                  by: turtle.&by
+                  move: turtle.&amp;move,
+                  by: turtle.&amp;by
           ])
           def shell = new GroovyShell(binding)
           shell.evaluate(script)
@@ -515,7 +513,7 @@ in js console type
         ... 
         </pre>
         <b>Did you mess up?</b>
-        <pre> > git checkout step6</pre>
+        <pre> &gt; git checkout step6</pre>
       </div>      
     </div>
  
@@ -530,12 +528,12 @@ in js console type
         <p style="font-size: 20px;color:pink;">First player (Franklin) is creating the game. The other player (Emily), joins the game...</p>
 
         <div style="display:inline-block;float:left;width: 400px;" >
-            <iframe src="http://kissingturtles.cloudfoundry.com/" width="400px" height="500px" name="myFrame" id="myFrame"></iframe>
+            <iframe src="http://kissingturtles.cloudfoundry.com/" width="400px" height="500px" name="myFrame" id="myFrame-2"></iframe>
         </div>
         <div style="display:inline-block;float:left;width:25px"><br></div>
 
         <div style="display:inline-block;float:right;width: 400px;" >
-            <iframe src="http://kissingturtles.cloudfoundry.com/" width="400px" height="500px" name="myFrame" id="myFrame"></iframe>
+            <iframe src="http://kissingturtles.cloudfoundry.com/" width="400px" height="500px" name="myFrame" id="myFrame-3"></iframe>
         </div>
         </div>
       </div>
@@ -637,7 +635,7 @@ in js console type
         }
     }); </pre>
         <b>Get latest from github?</b>
-        <pre> > git checkout step7</pre>
+        <pre> &gt; git checkout step7</pre>
         </div>
     </div>
 
@@ -645,8 +643,8 @@ in js console type
         <h2>Step8: Emily joins</h2>
         <div style="font-size: 20px">
          Same idea with <b>update</b> event<br/>
-         <b>1. write onclick</b> for element in the list</br>
-         get userId from localStorage and notify update</br>
+         <b>1. write onclick</b> for element in the list<br/>
+         get userId from localStorage and notify update<br/>
          <pre>
     that.elements.show.live('click tap', function (event) {
       //TO DO
@@ -712,7 +710,7 @@ in js console type
                 that.player = "emily";
                 that.gameId = data.item.id;
                 $.mobile.changePage($("#section-show-game"));
-            } else if (that.player == "franklin" && that.gameId == data.item.id) {
+            } else if (that.player == "franklin" &amp;&amp; that.gameId == data.item.id) {
                 // For Franklin game
                 that.draw({emily: that.currentMaze.steps[0].emily});
             } else {
@@ -723,7 +721,7 @@ in js console type
 
         </pre>
         <b>Get latest from github?</b>
-        <pre> > git checkout step8</pre>
+        <pre> &gt; git checkout step8</pre>
         </div>
       </div>
     
@@ -777,19 +775,9 @@ in js console type
     });
         </pre>
         <b>Get latest from github?</b>
-        <pre> > git checkout step9</pre>
+        <pre> &gt; git checkout step9</pre>
       </div>
       </div>
-
-<!--       <div id="multiplayer-11" class="step slide" data-x="-2093" data-y="2751" data-scale="0.6">
-        <h2></h2>
-        <div style="float: left; font-size: 20px;"> 
-
-        </div>
-      </div>
-
-<div id="multiplayer-12" class="step slide" data-x="-1433" data-y="2751" data-scale="0.6">
-</div> -->
 
       <!-- Conclusion -->
       <div id="conclusion" class="step section" data-x="-2953" data-y="-327" data-scale="3">
@@ -802,6 +790,7 @@ git commit -m "my changes"<br/>
 git remote add origin https://github.com/yourGithubUsername/KissingTurtlesGreach.git<br/>
 git push -u origin master<br/>
        </div>
+      </div>
     </div>
 
     <div class="hint">
