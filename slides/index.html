@@ -46,43 +46,59 @@
   width="300" height="400"
   style="width: 150px; height: 200px;"&gt;
 &lt;/canvas&gt;</code></pre>
+      </div>
+
+      <div id="canvas-js" class="step slide" data-x="2623" data-y="-477" data-scale="0.6">
+        <h2>Interracting with javascript</h2>
         <pre><code class="language-javascript">var canvas = document.getElementById("mycanvas");
 var h = canvas.height;
 var w = canvas.width;
 var ctx = canvas.getContext('2d');</code></pre>
+        TODO beginPath/closePath, implicit first moveTo
       </div>
 
-      <div id="canvas-pen" class="step slide" data-x="2623" data-y="-477" data-scale="0.6">
-        <h2>Behaves like a pen</h2>
-        <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;" width="100" height="100" viewBox="0 0 100 100">
-          <text x="0" y="35" font-size="5">(0,0)</text>
-          <text x="30" y="40" font-size="5">ctx.moveTo(x,y)</text>
-          <text x="45" y="80" font-size="5">ctx.lineTo(x,y)</text>
-          <line x1="5" y1="40" stroke="black" stroke-width="1" stroke-dasharray="1,3">
-            <animate attributeName="x2" values="5;80;80" keyTimes="0;0.5;1" dur="4s" repeatCount="indefinite" />
-            <animate attributeName="y2" values="40;45;45" keyTimes="0;0.5;1" dur="4s" repeatCount="indefinite" />
-          </line>
-          <line x1="80" y1="45" stroke="black" stroke-width="1">
-            <animate attributeName="x2" values="80;80;10" keyTimes="0;0.5;1" dur="4s" repeatCount="indefinite" />
-            <animate attributeName="y2" values="45;45;95" keyTimes="0;0.5;1" dur="4s" repeatCount="indefinite" />
-          </line>
-          <image xlink:href="images/pencil.png" height="15" width="15">
-            <animate attributeName="x" values="5;80;10" keyTimes="0;0.5;1" dur="4s" repeatCount="indefinite" />
-            <animate attributeName="y" values="25;30;80" keyTimes="0;0.5;1" dur="4s" repeatCount="indefinite" />
-          </image>
-        </svg>
+      <div id="canvas-path" class="step slide" data-x="3283" data-y="-477" data-scale="0.6">
+        <h2>Drawing paths</h2>
+        <div class="livedemo">
+          <textarea>ctx.lineWidth = 20;
+ctx.lineCap = 'round';
+ctx.strokeStyle = 'green';
+ctx.moveTo(25, 25);
+ctx.lineTo(405, 45);
+ctx.bezierCurveTo(400, 500, 10, 450, 80, 100);
+ctx.stroke();</textarea>
+          <canvas width="500" height="500"></canvas>
+        </div>
       </div>
 
-      <div id="canvas-curve" class="step slide" data-x="3283" data-y="-477" data-scale="0.6">
-        <h2>Curves too</h2>
-      </div>
-
-      <div id="canvas-stylepath" class="step slide" data-x="3943" data-y="-477" data-scale="0.6">
-        <h2>Styling paths</h2>
+      <div id="canvas-fillingpaths" class="step slide" data-x="3943" data-y="-477" data-scale="0.6">
+        <h2>Filling paths</h2>
+        <div class="livedemo">
+          <textarea>ctx.lineWidth = 5;
+ctx.strokeStyle = 'green';
+ctx.fillStyle = 'red';
+ctx.moveTo(25, 25);
+ctx.lineTo(405, 45);
+ctx.bezierCurveTo(400, 500, 10, 450, 25, 25);
+ctx.fill();
+ctx.stroke();</textarea>
+          <canvas width="500" height="500"></canvas>
+        </div>
       </div>
 
       <div id="canvas-fill" class="step slide" data-x="3943" data-y="3" data-scale="0.6">
-        <h2>Filling surface</h2>
+        <h2>Drawing shapes</h2>
+        <div class="livedemo">
+          <textarea>ctx.lineWidth = 5;
+ctx.strokeStyle = 'green';
+ctx.fillStyle = 'red';
+ctx.rect(25, 25, 100, 100);
+ctx.moveTo(250, 200);
+ctx.arc(200, 200, 50, 0, 2 * Math.PI);
+ctx.fill();
+ctx.stroke();</textarea>
+          <canvas width="500" height="500"></canvas>
+        </div>
       </div>
 
       <div id="canvas-scenery" class="step slide" data-x="3943" data-y="483" data-scale="0.6">
@@ -91,18 +107,39 @@ var ctx = canvas.getContext('2d');</code></pre>
         <a href="../canvas/scenery.html">Test</a>
       </div>
 
-      <div id="canvas-bitmap" class="step slide" data-x="3283" data-y="483" data-scale="0.6">
-        <h2>Accepts bitmaps</h2>
+      <div id="canvas-origin" class="step slide" data-x="3283" data-y="483" data-scale="0.6">
+        <h2>Playing with origin</h2>
+        <div class="livedemo">
+          <textarea>ctx.save();
+ctx.translate(50, 50);
+ctx.rotate(Math.PI / 6);
+ctx.scale(2, 2);
+ctx.lineWidth = 5;
+ctx.strokeStyle = 'green';
+ctx.fillStyle = 'red';
+ctx.rect(25, 25, 100, 100);
+ctx.fill();
+ctx.stroke();
+ctx.restore();
+ctx.rect(25, 25, 100, 100);
+ctx.fill();
+ctx.stroke();</textarea>
+          <canvas width="500" height="500"></canvas>
+        </div>
       </div>
 
-      <div id="canvas-singleframe" class="step slide" data-x="2623" data-y="483" data-scale="0.6">
+      <div id="canvas-bitmaps" class="step slide" data-x="2623" data-y="483" data-scale="0.6">
+        <h2>Include a bitmap</h2>
+        <div class="livedemo">
+          <textarea></textarea>
+          <canvas width="500" height="500"></canvas>
+        </div>
+      </div>
+
+      <div id="canvas-singleframe" class="step slide" data-x="1963" data-y="483" data-scale="0.6">
         <h2>Let's draw a single frame</h2>
         <a href="../canvas/ktDraw.js">Edit</a>
         <a href="../canvas/frame.html">Test</a>
-      </div>
-
-      <div id="canvas-clean" class="step slide" data-x="1963" data-y="483" data-scale="0.6">
-        <h2>Cleaning a bit</h2>
       </div>
 
       <div id="canvas-animationbackground" class="step slide" data-x="1963" data-y="3" data-scale="0.6">
@@ -796,6 +833,34 @@ git push -u origin master<br/>
     <div class="hint">
       <p>Use a spacebar or arrow keys to navigate</p>
     </div>
+    <script>
+(function () {
+  function enhance (element) {
+    var txt = element.querySelector('textarea');
+    var canvas = element.querySelector('canvas');
+    var lastvalid = '';
+    function change () {
+      var ctx = canvas.getContext('2d');
+      try {
+        ctx.beginPath();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        eval(txt.value);
+        lastvalid = txt.value;
+        ctx.closePath();
+      } catch (err) {
+        ctx.closePath();
+      }
+    }
+    txt.addEventListener('input', change, true);
+    change();
+  }
+  var demos = document.querySelectorAll('.livedemo');
+  for (var i = 0; i < demos.length; i++) {
+    enhance(demos.item(i));
+  }
+})();
+    </script>
+    <script src="js/prism.js"></script>
     <script>
       if ("ontouchstart" in document.documentElement) { 
         document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
