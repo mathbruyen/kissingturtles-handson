@@ -40,8 +40,16 @@ Circle actually comes from the ability to draw an arc other a whole turn.
 
 ## Playing with origin
 
-The second canvas primitive is changing the referential. Instead of doing complex calculation in javascript, it is sometimes easier to move the origin, rotate axes, or scale them.
+The second canvas primitive is changing the referential. Instead of doing complex calculation in javascript, it is sometimes easier to move the origin, rotate axes, or scale them (scaling with negative number works too).
 
 Restoring the origin to its expected place is then tricky. Except that it is done automatically. The practice is to save the context on a stack with `ctx.save()` method, do the changes and draw the path, and then calling `ctx.restore()` method so that the canvas is restored to the previous state from the stack. Doing a referential change modifies the current state, allowing to compose transformations if every one properly restores to the context it got in entry.
 
 Context saving also includes fill and stroke styles, so it is actually a good practice to save before modifying a style and restore after having drawn the path.
+
+## Include a bitmap
+
+Including a bitmap is as simple as creating an `Image` object with the correct source and waiting for it to properly load before actually drawing it. If the image is not loaded nothing is drawn on the canvas. It also means it is drawn asynchronously, later on: take care of non final variables and that the image will likely appear on top.
+
+In practice we usually reuse a lot images and reloading it every time is costly, so the best is to keep a reference to the image (given that it is not a memory leak).
+
+An image can only be drawn horizontally, so referential transformations comes to help for rotating it.
