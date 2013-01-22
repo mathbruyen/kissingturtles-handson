@@ -18,8 +18,30 @@ There are two options to deal with canvas size versus CSS size. Either retrieve 
 
 ## Basic: drawing paths
 
-The basic of canvas is drawing paths. Canvas behaves here like a pen you move on a paper from point to point following given paths.
+The basic of canvas is drawing paths. Canvas behaves here like a pen you move on a paper from point to point following given paths. Unit is canvas pixel.
 
 A very important aspect is that path drawing must occur within after a `ctx.beginPath()`. This tells canvas no trying to join the previous items. Then there are a lot of possible solutions to move your pen, the main ones being `ctx.lineTo(x, y)` to move straight and `ctx.bezierCurveTo(x1, y1, x2, y2, xend, yend)` for simple Bezier curves, but there also exists `moveTo(x, y)` to go somewhere without drawing anything.
 
-Paths can be styled with properties `strokeStyle` (color), `lineWidth` (thickness in pixels) and `lineCap` (extermity). By default the path is not drawn, it will only be so by calling at any moment `ctx.stroke()` method.
+Paths can be styled with properties `strokeStyle` (any CSS valid color, includes alpha transparency), `lineWidth` (thickness in pixels) and `lineCap` (extermity). By default the path is not drawn, it will only be so by calling at any moment `ctx.stroke()` method.
+
+## Filling paths
+
+Paths can be filled to make surfaces by choosing the color in `fillStyle` and calling the `ctx.fill()` method. The path can, but may not, be styled at the same time the surface is filled.
+
+The `ctx.closePath()` method helps closing the path.
+
+## Shortcut - drawing shapes
+
+Admitedly it is tedious to draw simple shapes that way, so there exists shortcuts. But they are only shortcuts: they internally resort to path drawing with surface so calling `ctx.beginPath()` before usually helps. And they are styled with the exact same properties of paths.
+
+The rectangle is pretty obvious with `ctx.rect(topleftx, toplefty, width, height)`.
+
+Circle actually comes from the ability to draw an arc other a whole turn.
+
+## Playing with origin
+
+The second canvas primitive is changing the referential. Instead of doing complex calculation in javascript, it is sometimes easier to move the origin, rotate axes, or scale them.
+
+Restoring the origin to its expected place is then tricky. Except that it is done automatically. The practice is to save the context on a stack with `ctx.save()` method, do the changes and draw the path, and then calling `ctx.restore()` method so that the canvas is restored to the previous state from the stack. Doing a referential change modifies the current state, allowing to compose transformations if every one properly restores to the context it got in entry.
+
+Context saving also includes fill and stroke styles, so it is actually a good practice to save before modifying a style and restore after having drawn the path.

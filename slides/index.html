@@ -142,7 +142,7 @@ ctx.lineTo(405, 45);
 ctx.bezierCurveTo(200, 250, 10, 290, 80, 100);
 ctx.closePath();
 
-ctx.fillStyle = 'blue';
+ctx.fillStyle = 'rgba(10, 10, 230, 0.3)';
 ctx.fill();
 
 ctx.lineWidth = 5;
@@ -166,6 +166,7 @@ ctx.fill();
 ctx.beginPath();
 ctx.arc(200, 200, 50, 0, 2 * Math.PI);
 ctx.fill();
+
 ctx.stroke();</code></pre>
           <canvas width="500" height="300"></canvas>
         </div>
@@ -209,19 +210,21 @@ ctx.stroke();</code></pre>
       <div id="canvas-origin" class="step slide" data-x="3283" data-y="483" data-scale="0.6">
         <h2>Playing with origin</h2>
         <div class="livedemo">
-          <pre><code class="language-javascript">ctx.lineWidth = 5;
-ctx.strokeStyle = 'green';
-ctx.fillStyle = 'red';
+          <pre><code class="language-javascript">ctx.save();
 
-ctx.save();
 ctx.translate(250, 150);
 ctx.rotate(Math.PI / 6);
 ctx.scale(2, 2);
 
 ctx.beginPath();
 ctx.rect(-50, -50, 100, 100);
+
+ctx.lineWidth = 5;
+ctx.strokeStyle = 'green';
+ctx.fillStyle = 'red';
 ctx.fill();
 ctx.stroke();
+
 ctx.restore();</pre></code>
           <canvas width="500" height="300"></canvas>
         </div>
