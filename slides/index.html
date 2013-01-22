@@ -260,16 +260,17 @@ image.src = 'images/tree.png';</pre></code>
 var from = { x: 1, y: 1 };
 var to = { x: 3, y: 4 };
 
-var progress = (Date.now() - startTime) / duration;
-if (progress >= 1) {
-  drawAt(to.x, to.y);
-  // Stop
-} else {
+function computeProgress() {
+  return (Date.now() - startTime) / duration;
+}
+
+function draw(progress) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawGrid();
   drawAt(
     from.x + (to.x - from.x) * progress,
     from.y + (to.y - from.y) * progress
   );
-  // Redo at next frame
 }</code></pre>
       </div>
 
@@ -277,12 +278,11 @@ if (progress >= 1) {
         <h2>requestAnimationFrame</h2>
           <pre><code class="language-javascript">function iterate(timestamp) {
   var progress = computeProgress(timestamp);
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
   if (progress > 1) {
-    drawAt(1);
+    draw(1);
   } else {
     window.requestAnimationFrame(iterate);
-    drawAt(progress);
+    draw(progress);
   }
 }
 window.requestAnimationFrame(iterate);</pre></code>
