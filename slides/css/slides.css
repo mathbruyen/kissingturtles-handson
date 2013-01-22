@@ -90,7 +90,7 @@ table {
     want to leave anybody behind.
 */
 body {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Helvetica', sans-serif;
     min-height: 740px;
     
     background: rgb(215, 215, 215);
@@ -193,12 +193,15 @@ a:focus {
   background-color: #BABABA;
 }
 .slide {
-  background-color: white;
+  background-color: rgb(230, 230, 230);
+  border-radius: 25px;
 }
 
 h2 {
   text-align: center;
-  background-color: red;
+  color: white;
+  background-color: rgb(64, 113, 7);
+  border-radius: 15px;
 }
 
 /*
