@@ -26,7 +26,7 @@
 
     <div id="impress">
       <!-- Show an overview of the presentation -->
-      <div id="my-overview" class="step" data-x="0" data-y="0" data-scale="12">
+      <div id="overview" class="step" data-x="0" data-y="0" data-scale="12">
       </div>
 
       <!-- Introduction section overview -->
@@ -46,153 +46,63 @@
   width="300" height="400"
   style="width: 150px; height: 200px;"&gt;
 &lt;/canvas&gt;</code></pre>
-      </div>
-
-      <div id="canvas-js" class="step slide" data-x="2623" data-y="-477" data-scale="0.6">
-        <h2>Interracting with javascript</h2>
         <pre><code class="language-javascript">var canvas = document.getElementById("mycanvas");
 var h = canvas.height;
 var w = canvas.width;
 var ctx = canvas.getContext('2d');</code></pre>
       </div>
 
-      <div id="canvas-path" class="step slide" data-x="3283" data-y="-477" data-scale="0.6">
-        <h2>Basic: drawing paths</h2>
-        <div class="livedemo">
-          <pre><code class="language-javascript">ctx.beginPath();
-ctx.lineWidth = 20;
-ctx.lineCap = 'round';
-ctx.strokeStyle = 'green';
-ctx.moveTo(25, 25);
-ctx.lineTo(405, 45);
-ctx.bezierCurveTo(200, 290, 10, 250, 80, 100);
-ctx.stroke();
-ctx.closePath();</code></pre>
-          <canvas width="500" height="300"></canvas>
-        </div>
+      <div id="canvas-pen" class="step slide" data-x="2623" data-y="-477" data-scale="0.6">
+        <h2>Behaves like a pen</h2>
+        <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;" width="100" height="100" viewBox="0 0 100 100">
+          <text x="0" y="35" font-size="5">(0,0)</text>
+          <text x="30" y="40" font-size="5">ctx.moveTo(x,y)</text>
+          <text x="45" y="80" font-size="5">ctx.lineTo(x,y)</text>
+          <line x1="5" y1="40" stroke="black" stroke-width="1" stroke-dasharray="1,3">
+            <animate attributeName="x2" values="5;80;80" keyTimes="0;0.5;1" dur="4s" repeatCount="indefinite" />
+            <animate attributeName="y2" values="40;45;45" keyTimes="0;0.5;1" dur="4s" repeatCount="indefinite" />
+          </line>
+          <line x1="80" y1="45" stroke="black" stroke-width="1">
+            <animate attributeName="x2" values="80;80;10" keyTimes="0;0.5;1" dur="4s" repeatCount="indefinite" />
+            <animate attributeName="y2" values="45;45;95" keyTimes="0;0.5;1" dur="4s" repeatCount="indefinite" />
+          </line>
+          <image xlink:href="images/pencil.png" height="15" width="15">
+            <animate attributeName="x" values="5;80;10" keyTimes="0;0.5;1" dur="4s" repeatCount="indefinite" />
+            <animate attributeName="y" values="25;30;80" keyTimes="0;0.5;1" dur="4s" repeatCount="indefinite" />
+          </image>
+        </svg>
       </div>
 
-      <div id="canvas-fillingpaths" class="step slide" data-x="3943" data-y="-477" data-scale="0.6">
-        <h2>Filling paths</h2>
-        <div class="livedemo">
-          <pre><code class="language-javascript">ctx.beginPath();
+      <div id="canvas-curve" class="step slide" data-x="3283" data-y="-477" data-scale="0.6">
+        <h2>Curves too</h2>
+      </div>
 
-ctx.fillStyle = 'blue';
-ctx.moveTo(25, 25);
-ctx.lineTo(405, 45);
-ctx.bezierCurveTo(200, 250, 10, 290, 80, 100);
-ctx.fill();
-
-ctx.lineWidth = 5;
-ctx.strokeStyle = 'red';
-ctx.stroke();
-
-ctx.closePath();</code></pre>
-          <canvas width="500" height="300"></canvas>
-        </div>
+      <div id="canvas-stylepath" class="step slide" data-x="3943" data-y="-477" data-scale="0.6">
+        <h2>Styling paths</h2>
       </div>
 
       <div id="canvas-fill" class="step slide" data-x="3943" data-y="3" data-scale="0.6">
-        <h2>Shortcut - drawing shapes</h2>
-        <div class="livedemo">
-          <pre><code class="language-javascript">ctx.lineWidth = 5;
-ctx.strokeStyle = 'green';
-ctx.fillStyle = 'red';
-
-ctx.beginPath();
-ctx.rect(325, 25, 100, 100);
-ctx.fill();
-ctx.closePath();
-
-ctx.beginPath();
-ctx.arc(200, 200, 50, 0, 2 * Math.PI);
-ctx.fill();
-ctx.stroke();
-ctx.closePath();</code></pre>
-          <canvas width="500" height="300"></canvas>
-        </div>
+        <h2>Filling surface</h2>
       </div>
 
       <div id="canvas-scenery" class="step slide" data-x="3943" data-y="483" data-scale="0.6">
-        <h2>Draw background!</h2>
-        <p>I want to see some kind of grid</a></p>
-        <p>Edit <a href="../canvas/ktDrawBackground.js">ktDrawBackground.js</a></p>
-        <p>Test in <a href="../canvas/background.html">background.html</a></p>
-        <canvas id="backgroundcanvas1" width="300" height="300" style="position: absolute; bottom: 1em; left: 1em"></canvas>
-        <canvas id="backgroundcanvas2" width="300" height="300" style="position: absolute; bottom: 1em; right: 1em"></canvas>
-        <script>
-(function () {
-  var canvas1 = document.getElementById('backgroundcanvas1');
-  var ctx1 = canvas1.getContext('2d');
-  var canvas2 = document.getElementById('backgroundcanvas2');
-  var ctx2 = canvas2.getContext('2d');
-  var grid = 10;
-  for (var i = 0; i < grid; i++) {
-    for (var j = 0; j < grid; j++) {
-      ctx1.beginPath();
-      ctx1.fillStyle = ((i + j) % 2 === 0) ? 'red' : 'blue';
-      ctx1.rect(i * canvas1.width / grid, j * canvas1.height / grid, canvas1.width / grid, canvas1.height / grid);
-      ctx1.fill();
-      ctx1.closePath();
-
-      ctx2.beginPath();
-      ctx2.strokeStyle = 'green';
-      ctx2.moveTo((i + 1/2) * canvas2.width / grid, 0);
-      ctx2.lineTo((i + 1/2) * canvas2.width / grid, canvas2.height);
-      ctx2.moveTo(0, (j + 1/2) * canvas2.height / grid);
-      ctx2.lineTo(canvas2.width, (j + 1/2) * canvas2.height / grid);
-      ctx2.stroke();
-      ctx2.closePath();
-    }
-  }
-})();
-        </script>
+        <h2>Let's draw scenery</h2>
+        <a href="../canvas/ktDraw.js">Edit</a>
+        <a href="../canvas/scenery.html">Test</a>
       </div>
 
-      <div id="canvas-origin" class="step slide" data-x="3283" data-y="483" data-scale="0.6">
-        <h2>Playing with origin</h2>
-        <div class="livedemo">
-          <pre><code class="language-javascript">ctx.lineWidth = 5;
-ctx.strokeStyle = 'green';
-ctx.fillStyle = 'red';
-
-ctx.save();
-ctx.translate(250, 150);
-ctx.rotate(Math.PI / 6);
-ctx.scale(2, 2);
-
-ctx.beginPath();
-ctx.rect(-50, -50, 100, 100);
-ctx.fill();
-ctx.stroke();
-ctx.closePath();
-ctx.restore();</pre></code>
-          <canvas width="500" height="300"></canvas>
-        </div>
+      <div id="canvas-bitmap" class="step slide" data-x="3283" data-y="483" data-scale="0.6">
+        <h2>Accepts bitmaps</h2>
       </div>
 
-      <div id="canvas-bitmaps" class="step slide" data-x="2623" data-y="483" data-scale="0.6">
-        <h2>Include a bitmap</h2>
-        <div class="livedemo">
-          <pre><code class="language-javascript">
-var image = new Image();
-image.onload = function () {
-  ctx.save();
-  ctx.translate(150, 150);
-  ctx.rotate(Math.PI / 8);
-  ctx.scale(2, 2);
-  ctx.drawImage(image, -16, -16, 32, 32)
-  ctx.restore();
-};
-image.src = 'images/tree.png';</pre></code>
-          <canvas width="300" height="300"></canvas>
-        </div>
-      </div>
-
-      <div id="canvas-singleframe" class="step slide" data-x="1963" data-y="483" data-scale="0.6">
+      <div id="canvas-singleframe" class="step slide" data-x="2623" data-y="483" data-scale="0.6">
         <h2>Let's draw a single frame</h2>
         <a href="../canvas/ktDraw.js">Edit</a>
         <a href="../canvas/frame.html">Test</a>
+      </div>
+
+      <div id="canvas-clean" class="step slide" data-x="1963" data-y="483" data-scale="0.6">
+        <h2>Cleaning a bit</h2>
       </div>
 
       <div id="canvas-animationbackground" class="step slide" data-x="1963" data-y="3" data-scale="0.6">
@@ -221,12 +131,13 @@ image.src = 'images/tree.png';</pre></code>
         grails2.1+<br/>
         html5-mobile-scaffold<br/>
         <b>KissingTurtlesGreach Step by Step</b><br/>
-        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git clone https://github.com/corinnekrych/KissingTurtlesGreach.git</code></pre>
-        <span style="font-size: 20px;"><img width="30" src="images/Warning-icon.png" alt="warning" /><b> Don't loose your hard work</b></span><br/>
+        <pre> > git clone https://github.com/corinnekrych/KissingTurtlesGreach.git</pre>
+        <span style="font-size: 20px;"><img width="5%" src="images/Warning-icon.png"/><b> Don't loose your hard work</span></b><br/>
         Before getting code from github branches, backup!<br/>
-        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git checkout step1</code></pre>
+        <pre> > git commit -a -m "msg"
+ > git checkout step1</pre>
         <b>KissingTurtles tutorial</b><br/>
-        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git clone https://github.com/mathbruyen/kissingturtles-handson.git</code></pre>
+        <pre> > git clone https://github.com/mathbruyen/kissingturtles-handson.git</pre>
         </div>
       </div>
 
@@ -234,13 +145,12 @@ image.src = 'images/tree.png';</pre></code>
       <div id="scaffolding-2" class="step slide" data-x="1433" data-y="2277" data-scale="0.6">
         <h2>Kissing Turtles</h2>
         <div style="float: left; font-size: 20px; text-align: left; display: inline-block; width: 30%"><br/>
-        <p>Intiative started in november for Grails48</p><img width="70" src="images/g48_logo10.png" alt="grails48"/>
+        <p>Intiative started in november for Grails48</p><img width="30%" src="images/g48_logo10.png"/>
         <p>Game for kids to learn programming</p>
         <p>Simple Groovy DSL to make the turtle move</p>        
         </div>
         <div style="float:right;font-size:30px;text-align:right;display:inline-block;">
-            <!--iframe src="http://kissingturtles.cloudfoundry.com" width="500" height="600" name="myFrame" id="myFrame"></iframe-->
-            <img width="380" src="images/kissingturtles.png"/>
+            <iframe src="http://kissingturtles.cloudfoundry.com" width="500px" height="600px" name="myFrame" id="myFrame"></iframe>
         </div>
     </div>
 
@@ -248,11 +158,11 @@ image.src = 'images/tree.png';</pre></code>
         <h2>New project</h2><br/>
         <div style="font-size: 20px">
         <b>Create a new Grails app</b>
-        <pre><code style="font-size: 14px" class="language-markup"> &gt; grails create-app KissingTurtlesGreach</code></pre>
+        <pre> > grails create-app KissingTurtlesGreach</pre>
         <b>Integrate with you favourite editor ;-) </b>
-        <pre><code style="font-size: 14px" class="language-markup"> &gt; grails integrate-with --intellij</code></pre>
+        <pre> > grails integrate-with --intellij</pre>
         <b>Only one domain class needed</b>
-        <pre><code style="font-size: 14px" class="language-markup"> &gt; grails create-domain-class kissingturtles.Game</code></pre>
+        <pre> > grails create-domain-class kissingturtles.Game</pre>
         add attribute to your domain class:<br/>
         String name<br/>
       </div>
@@ -264,22 +174,21 @@ image.src = 'images/tree.png';</pre></code>
         <a href="http://3musket33rs.github.com/">3musket33rs plugin</a>
         <div style="font-size: 20px">
         <b>1: Plugin dependencies</b> in BuildConfig.groovy
-<pre><code style="font-size: 14px" class="language-markup">grails.plugin.location."html5-mobile-scaffolding" = 
-"../html5-mobile-scaffolding"</code></pre>
+<pre>grails.plugin.location."html5-mobile-scaffolding" = <br/>"../html5-mobile-scaffolding"</pre>
 <b>2: New scaffold script</b><br/>
-<pre><code style="font-size: 14px" class="language-markup">&gt; grails html-generate-all kissingturtles.Game
-&gt; grails run-app</code></pre>
+<pre> >grails html-generate-all kissingturtles.Game
+> grails run-app</pre>
 <b>You're lost?</b>
-<pre><code style="font-size: 14px" class="language-markup"> &gt; git checkout step1</code></pre>
+<pre> > git checkout step1</pre>
         </div>
         </div>
-        <img style="width:40%" src="images/figures/figure0.png" alt="doc" />
+        <img style="width:40%" src="images/figures/figure0.png" />
       </div>
 
       <div id="scaffolding-5" class="step slide" data-x="2753" data-y="2751" data-scale="0.6">
         <h2>What was generated?</h2>
         <div style="font-size: 20px">
-          => controllers<br/>
+          => controllers</b><br/>
           => views generated in web-app folder: no GSP!<br/>
           2 parts js framework, grails.mobile package<br/>
           and your domain driven package: <b>kissingturtles.views.game-view.js</b><br/>
@@ -291,25 +200,25 @@ image.src = 'images/tree.png';</pre></code>
         <h2>Offline mode</h2>
         <div style="font-size: 20px">
 <b>CRUD easy</b><br/>
-Try CRUD oprations, add new game.<br/>
+Try CRUD oprations, add new game.</br/>
 <b>Am I loosing my data offline?</b><br/> 
 in js console type
-<pre><code style="font-size: 14px" class="language-javascript"> &gt; localStorage</code></pre>
+<pre> > localStorage</pre/>
 <b>Test it</b><br/>
 1. turn off wifi or work offline menu in FF<br/>
 2. add a new game<br/>
 3. back offline<br/>
 <b>Clear data</b><br/>
-<pre><code style="font-size: 14px" class="language-javascript"> &gt; localStorage.clear()</code></pre>
+<pre> > localStorage.clear()</pre/>
         </div>
       </div>
 
-      <div id="scaffolding-6-1" class="step slide" data-x="2800" data-y="3300" data-scale="0.05">
+      <div id="scaffolding-6.1" class="step slide" data-x="2800" data-y="3300" data-scale="0.05">
         <h2>Offline mode</h2>
         <img style="float:right;width:100%" src="images/figures/figure2.png" />
       </div>
 
-      <div id="scaffolding-6-2" class="step slide" data-x="2950" data-y="3300" data-scale="0.05">
+      <div id="scaffolding-6.2" class="step slide" data-x="2950" data-y="3300" data-scale="0.05">
         <h2>Back online</h2>
         <img style="float:right;width:100%" src="images/figures/figure3.png" />
       </div>
@@ -319,126 +228,82 @@ in js console type
         <div style="font-size: 20px;">
           1. in UrlMappings.groovy remove: "/"(view:"/index")<br/>
           2. in BuildConfig.groovy remove:
-          <pre><code style="font-size: 14px" class="language-javascript">compile ':cache:1.0.0'
-          runtime ":resources:1.1.6"</code></pre>
+          <pre>compile ':cache:1.0.0'
+          runtime ":resources:1.1.6"</pre>
           3. remove offline caching in game-bootstrap.js
-          <pre><code style="font-size: 14px" class="language-javascript"> options: { 
+          <pre> options: { 
             offline: false,
             eventPush: true 
-          }</code></pre>
+          }</pre>
           4. Change view behaviour<br/>
           delete index.html<br/>
           rename game-index.html into index.html<br/>
           <b>You loose your path?</b><br/>
-          <pre><code style="font-size: 14px" class="language-javascript"> &gt; git checkout step2</code></pre>
+          <pre> > git checkout step2</pre>
         </div>
       </div>
 
       <div id="scaffolding-8" class="step slide" data-x="1433" data-y="3231" data-scale="0.6">
         <h2>Step3: Redesign main page</h2>
-        with HTML5<br/>
         <div style="float: left; font-size: 20px; text-align: left; display: inline-block; width: 40%">
+          with HTML5<br/>
           <b>Play button</b><br/>
-          In indext.html add new section "start-game" with a button id=play
-          <pre><code style="font-size: 14px" class="language-javascript"> &gt; git checkout step3</code></pre>
-          to get images !<br/>
-      </div>
-          <div style="float:right;font-size:30px;text-align:right;display:inline-block;">
-            <img src="images/mainpage.png"  width="400" height="500"/>
+          In index.html add new section "start-game" with a button id=play
+          <pre> > git checkout step3</pre>
+          to get images !</br>
+        </div>
+        <div style="float:right;font-size:30px;text-align:right;display:inline-block;">
+            <img src="images/mainpage.png"  width="400px" height="500px" name="myFrame" id="myFrame"></img>
         </div>
       </div>
       
-      <div id="scaffolding-8-1" class="step slide" data-x="1500" data-y="3300" data-scale="0.06">
+      <div id="scaffolding-8.1" class="step slide" data-x="1500" data-y="3300" data-scale="0.06">
       <div style="float: left; font-size: 20px;"> 
       <b>HTML section for start-game</b>
-      <pre><code style="font-size: 14px" class="language-javascript">
-&lt;section data-role=&quot;page&quot; id=&quot;start-game&quot;&gt;
-    &lt;div data-role=&quot;header&quot; data-position=&quot;fixed&quot;&gt;
-      &lt;h1&gt;Kissing Turtles&lt;/h1&gt;
-    &lt;/div&gt;
-
-    &lt;div class=&quot;center-wrapper&quot; data-role=&quot;content&quot; id=&quot;start-presentation&quot;&gt;
-      &lt;div&gt;
-        &lt;img width=&quot;20%&quot; src=&quot;images/game/turtle.png&quot;/&gt;
-        &lt;img width=&quot;20%&quot; src=&quot;images/game/pig.png&quot;/&gt;
-      &lt;/div&gt;
-
-      &lt;div data-theme=&quot;a&quot; class=&quot;center-wrapper&quot; data-content-theme=&quot;a&quot;&gt;
-        &lt;textarea readonly&gt;Franklin and Emily have a rendez-vous. 
-        Help them to meet at the love tree.&lt;/textarea&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-        &lt;ul data-role=&quot;listview&quot; data-inset=&quot;true&quot;&gt;
-          &lt;li&gt;&lt;a id=&quot;play&quot; data-role=&quot;button&quot; data-inline=&quot;true&quot;&gt;Play&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div data-role=&quot;footer&quot; data-position=&quot;fixed&quot;&gt;
-      &lt;h4&gt;Greach 2013&lt;/h4&gt;
-    &lt;/div&gt;
-&lt;/section&gt;
-      </code></pre>  
+      <pre style="height:40%">
+&lt;section data-role=&quot;page&quot; id=&quot;start-game&quot;&gt;<br/>    &lt;div data-role=&quot;header&quot; data-position=&quot;fixed&quot;&gt;<br/>        &lt;h1&gt;Kissing Turtles&lt;/h1&gt;<br/>    &lt;/div&gt;<br/><br/>    &lt;div class=&quot;center-wrapper&quot; data-role=&quot;content&quot; id=&quot;start-presentation&quot;&gt;<br/>        &lt;div&gt;<br/>            &lt;img width=&quot;20%&quot; src=&quot;images/game/turtle.png&quot;/&gt;<br/>            &lt;img width=&quot;20%&quot; src=&quot;images/game/pig.png&quot;/&gt;<br/>        &lt;/div&gt;<br/>        &lt;div data-theme=&quot;a&quot; class=&quot;center-wrapper&quot; data-content-theme=&quot;a&quot;&gt;<br/>            &lt;textarea readonly&gt;Franklin and Emily have a rendez-vous. Help them to meet at the love tree.&lt;/textarea&gt;&lt;/div&gt;<br/>        &lt;div&gt;<br/>            &lt;ul data-role=&quot;listview&quot; data-inset=&quot;true&quot;&gt;<br/>                &lt;li&gt;&lt;a id=&quot;play&quot; data-role=&quot;button&quot; data-inline=&quot;true&quot;&gt;Play&lt;/a&gt;&lt;/li&gt;<br/>            &lt;/ul&gt;<br/>        &lt;/div&gt;<br/>    &lt;/div&gt;<br/><br/>    &lt;div data-role=&quot;footer&quot; data-position=&quot;fixed&quot;&gt;<br/>        &lt;h4&gt;Greach 2013&lt;/h4&gt;<br/>    &lt;/div&gt;<br/>&lt;/section&gt;
+      </pre>  
     </div>
 
       </div>
 
       <div id="scaffolding-9" class="step slide" data-x="773" data-y="3231" data-scale="0.6">
         <h2>Step4: Add dynamic behaviour</h2>
-           with jQuery<br/>
+           with jQuery</br>
         <div style="float: left; font-size: 20px; text-align: left; display: inline-block; width: 50%">
           <b>1. User name section</b><br/>
-          Same than earlier... pure HTML5<br/>
+          Same than earlier... pure HTML5</br>
           <b>Play button</b><br/>
           2. In <b>kissingturtles.views.game-view.js</b><br/>
           add click on play -> go to section-show-user<br/>
           store on local storage user name<br/>
           3. click on save user-> go to list<br/>
-          <pre><code style="font-size: 14px" class="language-javascript">
-$('#play').live('click tap', function (event) {
-  //TO DO
-});
-$("#submit-user").live("click tap", function(event) {
-  // TO DO save in localStorage
-});
-          </code></pre>
+          <pre>
+        $('#play').live('click tap', function (event) {
+          //TO DO
+         });
+        $("#submit-user").live("click tap", function(event) {
+          // TO DO save in localStorage
+        });
+          </pre>
       </div>
       <div style="float:right;font-size:30px;text-align:right;display:inline-block;">
-            <img src="images/user_screen.png"  width="350"/>
+            <img src="images/user_screen.png"  width="350px" name="myFrame" id="myFrame"></img>
         </div>
       </div>
 
-      <div id="scaffolding-9-1" class="step slide" data-x="800" data-y="3300" data-scale="0.06">
+      <div id="scaffolding-9.1" class="step slide" data-x="800" data-y="3300" data-scale="0.06">
       <div style="float: left; font-size: 20px;"> 
-      <pre><code style="font-size: 14px" class="language-javascript">
-&lt;section data-role=&quot;page&quot; id=&quot;section-show-user&quot;&gt;
-  &lt;div data-role=&quot;header&quot; id=&quot;show-user&quot; data-position=&quot;fixed&quot;&gt;
-    &lt;a href=&quot;#start-game&quot; data-transition=&quot;slide&quot; data-icon=&quot;arrow-l&quot;&gt;Cancel&lt;/a&gt;
-      &lt;h1&gt;Who are you?&lt;/h1&gt;
-  &lt;/div&gt;
-  &lt;ul data-role=&quot;listview&quot; data-inset=&quot;true&quot;&gt;
-    &lt;li data-role=&quot;fieldcontain&quot;&gt;
-      &lt;label for=&quot;input-user-name&quot;&gt;What's your name ?&lt;/label&gt;
-      &lt;input type=&quot;text&quot; class=&quot;validate[required]&quot; 
-          name=&quot;name&quot; id=&quot;input-user-name&quot; value=&quot;&quot;/&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;div data-role=&quot;footer&quot; data-position=&quot;fixed&quot;&gt;
-    &lt;div data-role=&quot;navbar&quot;&gt;
-      &lt;ul&gt;
-        &lt;li&gt;&lt;a href=&quot;&quot; data-role=&quot;button&quot; data-transition=&quot;slide&quot; data-icon=&quot;save&quot;
-            id=&quot;submit-user&quot;&gt;Save&lt;/a&gt;&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/section&gt;
-      </code></pre> 
+      <pre style="height:40%;width:80%">
+&lt;section data-role=&quot;page&quot; id=&quot;section-show-user&quot;&gt;<br/>    &lt;div data-role=&quot;header&quot; id=&quot;show-user&quot; data-position=&quot;fixed&quot;&gt;<br/>        &lt;a href=&quot;#start-game&quot; data-transition=&quot;slide&quot; data-icon=&quot;arrow-l&quot;&gt;Cancel&lt;/a&gt;<br/>        &lt;h1&gt;Who are you?&lt;/h1&gt;<br/>    &lt;/div&gt;<br/>    &lt;ul data-role=&quot;listview&quot; data-inset=&quot;true&quot;&gt;<br/>        &lt;li data-role=&quot;fieldcontain&quot;&gt;<br/>            &lt;label for=&quot;input-user-name&quot;&gt;What's your name ?&lt;/label&gt;<br/>            &lt;input type=&quot;text&quot; class=&quot;validate[required]&quot; name=&quot;name&quot; id=&quot;input-user-name&quot; value=&quot;&quot;/&gt;<br/>        &lt;/li&gt;<br/>    &lt;/ul&gt;<br/><br/>    &lt;div data-role=&quot;footer&quot; data-position=&quot;fixed&quot;&gt;<br/>        &lt;div data-role=&quot;navbar&quot;&gt;<br/>            &lt;ul&gt;<br/>                &lt;li&gt;&lt;a href=&quot;&quot; data-role=&quot;button&quot; data-transition=&quot;slide&quot; data-icon=&quot;save&quot;<br/>                       id=&quot;submit-user&quot;&gt;Save&lt;/a&gt;&lt;/li&gt;<br/>            &lt;/ul&gt;<br/>        &lt;/div&gt;<br/>    &lt;/div&gt;<br/>&lt;/section&gt;
+      </pre> 
       </div> 
     </div>
 
-     <div id="scaffolding-9-2" class="step slide" data-x="900" data-y="3300" data-scale="0.06">
+     <div id="scaffolding-9.2" class="step slide" data-x="900" data-y="3300" data-scale="0.06">
       <div style="float: left; font-size: 20px;"> 
       <b>Click on play</b>
-      <pre><code style="font-size: 14px" class="language-javascript">
+      <pre>
     //----------------------------------------------------------------------------------------
     //   Click on Play brings you here
     //----------------------------------------------------------------------------------------
@@ -451,9 +316,9 @@ $("#submit-user").live("click tap", function(event) {
             $.mobile.changePage($("#section-show-user"));
         }
     });
-</code></pre>
+</pre>
 <b>Click on save user</b>
-<pre><code style="font-size: 14px" class="language-javascript">
+<pre>
     //----------------------------------------------------------------------------------------
     //   Click on Save on user page. Your name is asked only once.
     //----------------------------------------------------------------------------------------
@@ -462,7 +327,7 @@ $("#submit-user").live("click tap", function(event) {
         localStorage.setItem("KissingTurtles.UserId", name);
         $.mobile.changePage($("#section-list-game"));
     });
-</code></pre>
+</pre>
 </div>
       </div>      
 
@@ -475,7 +340,7 @@ $("#submit-user").live("click tap", function(event) {
           5. include ktDraw.js<br>
           6. window.onload to write in canvas<br>
           <b>Did you mess up?</b>
-          <pre><code style="font-size: 14px" class="language-javascript"> &gt; git checkout step4</code></pre>
+          <pre> > git checkout step4</pre>
         </div>
       </div>
 
@@ -485,29 +350,33 @@ $("#submit-user").live("click tap", function(event) {
         <b>Adding behabiour for create button</b><br/>
         . get name from localStorage<br/>
         . notify controller of create
-        <pre><code style="font-size: 14px" class="language-javascript">$("#add-game").live('click tap', function (event) {
-  //TO DO
-});</code></pre>
-        <b>Server side GameController</b><br/>
-        . generate walls<br/>
-        . generate turtles random positions<br/>
+        <pre>
+    $("#add-game").live('click tap', function (event) {
+      //TO DO
+    });
+        </pre>
+        <b>Server side GameController</b></br>
+        . generate walls</br>
+        . generate turtles random positions</br>
 
-        <b>Callback on created</b><br/>
-        . initialize ktDraw<br/>
+        <b>Callback on created</b></br>
+        . initialize ktDraw</br>
         . move to show-game section
-        <pre><code style="font-size: 14px" class="language-javascript">that.model.createdItem.attach(function (data, event) {
-  //TO DO
-});</code></pre>  
+        <pre>
+    that.model.createdItem.attach(function (data, event) {
+      //TO DO
+    });
+        </pre>  
 
         <b>Did you mess up?</b>
-        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git checkout step5</code></pre>
+        <pre> > git checkout step5</pre>
       </div>
       </div>
 
-     <div id="scaffolding-11-1" class="step slide" data-x="1500" data-y="2751" data-scale="0.06">
+     <div id="scaffolding-11.1" class="step slide" data-x="1500" data-y="2751" data-scale="0.06">
       <div style="float: left; font-size: 20px;"> 
       <b>Click on create</b>
-        <pre><code style="font-size: 14px" class="language-javascript">
+        <pre>
     //----------------------------------------------------------------------------------------
     //   Click on 'Create your own game' brings you here
     //----------------------------------------------------------------------------------------
@@ -519,14 +388,9 @@ $("#submit-user").live("click tap", function(event) {
         };
         that.createButtonClicked.notify(newElement, event);
     });
-        </code></pre>
-</div>
-</div>
-
-     <div id="scaffolding-11-2" class="step slide" data-x="1600" data-y="2751" data-scale="0.06">
-      <div style="float: left; font-size: 20px;"> 
+        </pre>
 <b>Callback on created</b>
-<pre><code style="font-size: 14px" class="language-javascript">
+<pre>
     //----------------------------------------------------------------------------------------
     //   Callback after first player create a new game. First player will play as Franklin.
     //----------------------------------------------------------------------------------------
@@ -554,7 +418,7 @@ $("#submit-user").live("click tap", function(event) {
             $.mobile.changePage($("#section-show-game"));
         }
     });
-</code></pre>
+</pre>
 </div>
       </div>   
     <div id="scaffolding-12" class="step slide" data-x="2093" data-y="2751" data-scale="0.6">
@@ -563,10 +427,10 @@ $("#submit-user").live("click tap", function(event) {
         <b>Adding behabiour for execute button</b><br/>
         
 
-        <b>Server side GameController</b><br/>
-        . move up by 3<br/>
+        <b>Server side GameController</b></br>
+        . move up by 3</br>
         . is actual Grovvy code
-        <pre><code style="font-size: 14px" class="language-javascript">
+        <pre>
         def run() {
         ...
           def binding = new Binding([
@@ -575,23 +439,24 @@ $("#submit-user").live("click tap", function(event) {
                   right: dsl.Direction.right,
                   down: dsl.Direction.down,
                   up: dsl.Direction.up,
-                  move: turtle.&amp;move,
-                  by: turtle.&amp;by
+                  move: turtle.&move,
+                  by: turtle.&by
           ])
           def shell = new GroovyShell(binding)
           shell.evaluate(script)
           def result = binding.getVariable('turtle').result
         ... 
-        </code></pre>
+        </pre>
         <b>Did you mess up?</b>
-        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git checkout step6</code></pre>
+        <pre> > git checkout step6</pre>
       </div>      
     </div>
 
-    <div id="scaffolding-12-1" class="step slide" data-x="2300" data-y="2751" data-scale="0.1">
+    <div id="scaffolding-12.1" class="step slide" data-x="2200" data-y="2751" data-scale="0.3">
       <div style="float: left; font-size: 20px;"> 
       <b>Click on execute</b>
-        <pre><code style="font-size: 14px" class="language-javascript">//----------------------------------------------------------------------------------------
+        <pre>
+    //----------------------------------------------------------------------------------------
     //   Click on Execute my DSL script brings you here
     //----------------------------------------------------------------------------------------
     $("#submit-game").live("click tap", function(event) {
@@ -601,9 +466,11 @@ $("#submit-user").live("click tap", function(event) {
           content: dslInput, 
           gameId: gameId, 
           user: localStorage.getItem("KissingTurtles.UserId")});
-    });</code></pre>
+    });
+        </pre>
 <b>Callback on executed</b>
-    <pre><code style="font-size: 14px" class="language-javascript">//----------------------------------------------------------------------------------------
+    <pre>
+    //----------------------------------------------------------------------------------------
     //    Callback to display the maze after execute method
     //----------------------------------------------------------------------------------------
     that.model.executed.attach(function (data, event) {
@@ -616,7 +483,8 @@ $("#submit-user").live("click tap", function(event) {
                 }
             });
         });
-    });</code></pre>  
+    });
+   </pre>  
  </div>
 </div>
     <div id="scaffolding-12bis" class="step slide" data-x="2093" data-y="2751" data-scale="0.6">
@@ -625,10 +493,10 @@ $("#submit-user").live("click tap", function(event) {
         <b>Adding behabiour for execute button</b><br/>
         
 
-        <b>Server side GameController</b><br/>
-        . move up by 3<br/>
+        <b>Server side GameController</b></br>
+        . move up by 3</br>
         . is actual Grovvy code
-        <pre><code style="font-size: 14px" class="language-javascript">
+        <pre>
         def run() {
         ...
           def binding = new Binding([
@@ -637,16 +505,16 @@ $("#submit-user").live("click tap", function(event) {
                   right: dsl.Direction.right,
                   down: dsl.Direction.down,
                   up: dsl.Direction.up,
-                  move: turtle.&amp;move,
-                  by: turtle.&amp;by
+                  move: turtle.&move,
+                  by: turtle.&by
           ])
           def shell = new GroovyShell(binding)
           shell.evaluate(script)
           def result = binding.getVariable('turtle').result
         ... 
-        </code></pre>
+        </pre>
         <b>Did you mess up?</b>
-        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git checkout step6</code></pre>
+        <pre> > git checkout step6</pre>
       </div>      
     </div>
  
@@ -661,48 +529,46 @@ $("#submit-user").live("click tap", function(event) {
         <p style="font-size: 20px;color:pink;">First player (Franklin) is creating the game. The other player (Emily), joins the game...</p>
 
         <div style="display:inline-block;float:left;width: 400px;" >
-            <!--iframe src="http://kissingturtles.cloudfoundry.com/" width="400" height="500" name="myFrame" id="myFrame-2"></iframe-->
-            <img width="380" src="images/kissing1.png"/>
+            <iframe src="http://kissingturtles.cloudfoundry.com/" width="400px" height="500px" name="myFrame" id="myFrame"></iframe>
         </div>
         <div style="display:inline-block;float:left;width:25px"><br></div>
 
         <div style="display:inline-block;float:right;width: 400px;" >
-            <!--iframe src="http://kissingturtles.cloudfoundry.com/" width="400" height="500" name="myFrame" id="myFrame-3"></iframe-->
-            <img width="380" src="images/kissing2.png"/>
+            <iframe src="http://kissingturtles.cloudfoundry.com/" width="400px" height="500px" name="myFrame" id="myFrame"></iframe>
         </div>
         </div>
       </div>
 
     
       <div id="multiplayer-2" class="step slide" data-x="-2093" data-y="2277" data-scale="0.6">
-        <h2>Step7: Event Push</h2>
-        <div style="float: left; font-size: 20px; text-align: left;"><br/>
-        Event-push with Atmosphere integrated in <b>3musket33rs</b> plugins<br/>
-        using Grails <b>event-push</b> plugin and <b>platform core</b> plugin<br/><br/>
+        <h2>Event-push with Atmosphere</h2>
+        <div style="float: left; font-size: 20px; text-align: left; display: inline-block; width: 30%"><br/>
+        <p></p>
+        <p></p>
+        <p></p>        
         </div>
-           <div >
-            <img width="700" src="images/create.png"/>
-        </div> 
     </div>
 
       <div id="multiplayer-3" class="step slide" data-x="-1433" data-y="2277" data-scale="0.6">
         <h2>Step7: Franklin creates the game</h2>
         <div style="font-size: 20px">
         <b>Push is activated by default</b>
-        <pre><code style="font-size: 14px" class="language-javascript">options: {
+        <pre>options: {
             offline: false,
             eventPush: true
-        }</code></pre>
-        <b>Server side</b> declares the events in grails-app/conf/GameEvents.groovy
-        <pre><code style="font-size: 14px" class="language-javascript">events = {
+        }</pre>
+        <b>Server side</b><br/>
+        declare the events in grails-app/conf/GameEvents.groovy
+        <pre>events = {
       'save-game' browser:true
       'update-game' browser:true
       'delete-game' browser:true
-    }</code></pre>
+    }</pre>
         <b>In GameController, raise the event</b>
-        <pre><code style="font-size: 14px" class="language-javascript">event topic:"save-game", data: gameInstance</code></pre>
-        <b>Client side processing</b> in web-app/js/grails/mobile/push/pushmanager.js,<br/>
-        <pre><code style="font-size: 14px" class="language-javascript">grailsEvents.on('save-' + domainName , function (data) {
+        <pre>event topic:"save-game", data: gameInstance</pre>
+        <b>Client side processing</b><br/>
+        in web-app/js/grails/mobile/push/pushmanager.js,<br/>
+        <pre>grailsEvents.on('save-' + domainName , function (data) {
             if (!model.getItems()[data.id]) {
                 data.NOTIFIED = true;
                 if (options.offline) {
@@ -710,7 +576,7 @@ $("#submit-user").live("click tap", function(event) {
                 }
                 model.createItem(data);
             }
-        });</code></pre>
+        });</pre>
         </div>
       </div>
 
@@ -720,7 +586,7 @@ $("#submit-user").live("click tap", function(event) {
         he doesn't want to be notified!<br/>
         <b>in web-app/js/grails/mobile/push/pushmanager.js</b><br/>
         <b>Back on created callback</b>
-        <pre><code style="font-size: 14px" class="language-javascript">
+        <pre>
     //----------------------------------------------------------------------------------------
     //   Callback after first player create a new game. First player will play as Franklin.
     //----------------------------------------------------------------------------------------
@@ -731,7 +597,7 @@ $("#submit-user").live("click tap", function(event) {
         // TODO add check if we're notified data.item.NOTIFIED
         }
     });          
-        </code></pre>
+        </pre>
         </div>
       </div>
 
@@ -739,7 +605,11 @@ $("#submit-user").live("click tap", function(event) {
       <h2>Step7: Franklin already knows...</h2>
       <div style="font-size: 20px">
         <b>Back on created callback</b>
-        <pre><code style="font-size: 14px" class="language-javascript">that.model.createdItem.attach(function (data, event) {
+        <pre>
+    //----------------------------------------------------------------------------------------
+    //   Callback after first player create a new game. First player will play as Franklin.
+    //----------------------------------------------------------------------------------------
+    that.model.createdItem.attach(function (data, event) {
         if (data.item.errors) {
             $.each(data.item.errors, function (index, error) {
                 $('#input-game-' + error.field).validationEngine('showPrompt', error.message, 'fail');
@@ -758,36 +628,28 @@ $("#submit-user").live("click tap", function(event) {
             }
             renderElement(data.item);
             showElement(data.item);
+
             $("#list-game").listview('refresh');
             if (!data.item.NOTIFIED) {
                 $.mobile.changePage($("#section-show-game"));
             }
         }
-    });</code></pre>
+    }); </pre>
         <b>Get latest from github?</b>
-        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git checkout step7</code></pre>
+        <pre> > git checkout step7</pre>
         </div>
     </div>
 
       <div id="multiplayer-6" class="step slide" data-x="-773" data-y="3231" data-scale="0.6">
         <h2>Step8: Emily joins</h2>
-<br/>
-        <div style="font-size: 20px">
-         <img width="650px"src="images/update.png"/>
-      </div>
-      </div>
-
-      <div id="multiplayer-7" class="step slide" data-x="-1433" data-y="3231" data-scale="0.6">
-        <h2>Step8: Emily joins</h2>
-
         <div style="font-size: 20px">
          Same idea with <b>update</b> event<br/>
-         <b>1. write onclick</b> for element in the list<br/>
-         get userId from localStorage and notify update<br/>
-         <pre><code style="font-size: 14px" class="language-javascript">
+         <b>1. write onclick</b> for element in the list</br>
+         get userId from localStorage and notify update</br>
+         <pre>
     that.elements.show.live('click tap', function (event) {
       //TO DO
-    });</code></pre>
+    });</pre>
          <b>2. Server side</b><br/>
         declare the update-game event in grails-app/conf/GameEvents.groovy<br/>
         <b>3. In GameController, raise the update-game event</b><br/>
@@ -798,11 +660,11 @@ $("#submit-user").live("click tap", function(event) {
       </div>
       </div>
 
-      <div id="multiplayer-8" class="step slide" data-x="-2093" data-y="3231" data-scale="0.6">
+      <div id="multiplayer-7" class="step slide" data-x="-1433" data-y="3231" data-scale="0.6">
         <h2>Step8: Emily joins</h2>
       <div style="font-size: 20px">
         <b>On click element of the list</b>
-         <pre><code style="font-size: 14px" class="language-javascript">
+         <pre>
     //----------------------------------------------------------------------------------------
     //   Click on an element of the list to join the game. Second player is Emily.
     //----------------------------------------------------------------------------------------
@@ -816,15 +678,19 @@ $("#submit-user").live("click tap", function(event) {
             };
             that.updateButtonClicked.notify(newElement, event);
         }
-    });</code></pre>
+    });</pre>
         </div>
       </div>
 
-      <div id="multiplayer-9" class="step slide" data-x="-2753" data-y="3231" data-scale="0.6">
+      <div id="multiplayer-8" class="step slide" data-x="-2093" data-y="3231" data-scale="0.6">
         <h2>Step8: Emily joins</h2>
       <div style="font-size: 20px">
-        <b>Callback after joining the game</b>
-        <pre><code style="font-size: 14px" class="language-javascript">that.model.updatedItem.attach(function (data, event) {
+        <b>Callback on updated</b>
+        <pre>
+    //----------------------------------------------------------------------------------------
+    //   Callback after joining the game
+    //----------------------------------------------------------------------------------------
+    that.model.updatedItem.attach(function (data, event) {
         if (data.item.errors) {
             $.each(data.item.errors, function(index, error) {
                 $('#input-game-' + error.field).validationEngine('showPrompt',error.message, 'fail');
@@ -838,58 +704,56 @@ $("#submit-user").live("click tap", function(event) {
             var conf = JSON.parse(confAsString);
             that.currentMaze = conf;
             updateElement(data.item);
+
             if (!data.item.NOTIFIED) {
                 // For Emily game, initialize canvas
                 that.draw = ktDraw(document.getElementById('canvas'), conf, that.currentMaze.steps[0]);
                 that.player = "emily";
                 that.gameId = data.item.id;
                 $.mobile.changePage($("#section-show-game"));
-            } else if (that.player == "franklin" &amp;&amp; that.gameId == data.item.id) {
+            } else if (that.player == "franklin" && that.gameId == data.item.id) {
                 // For Franklin game
                 that.draw({emily: that.currentMaze.steps[0].emily});
             } else {
                 $("#list-game").listview('refresh');
             }
         }
-    });</code></pre>
- </div>
-      </div>
+    });
 
-      <div id="multiplayer-9.1" class="step slide" data-x="-2600" data-y="3231" data-scale="0.1">
-        <h2>Step8: Emily has joined!</h2>
-        <div style="font-size: 20px">
+        </pre>
         <b>Get latest from github?</b>
-        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git checkout step8</code></pre>
+        <pre> > git checkout step8</pre>
         </div>
       </div>
     
-    <div id="multiplayer-10" class="step slide" data-x="-2753" data-y="2751" data-scale="0.6">
+
+      <div id="multiplayer-9" class="step slide" data-x="-2753" data-y="3231" data-scale="0.6">
         <h2>Step9: My friend moves</h2>
         <div style="font-size: 20px">
         <b>1. Define new event</b> in grails-app/conf/GameEvents.groovy
-        <pre><code style="font-size: 14px" class="language-javascript">events = {
+        <pre>events = {
               'save-game' browser:true
               'update-game' browser:true
               'delete-game' browser:true
               "execute-game" browser: true
-            }</code></pre>
+            }</pre>
         <b>2. GameController.execute</b>, raise event execute-game<br/>
         <b>3. Client side</b> catch event execute-game <br/>
         in manager-bootstap.js
-        <pre><code style="font-size: 14px" class="language-javascript">
+        <pre>
     managerObject.domainsObjects['game'].push.grailsEvents.on('execute-game', function (data) {
         var dataParsed = JSON.parse(data);
         dataParsed.NOTIFIED = true;
         managerObject.domainsObjects['game'].model.execute(dataParsed);
-    });</code></pre>
+    });</pre>
       </div>
       </div>     
 
-      <div id="multiplayer-11" class="step slide" data-x="-2753" data-y="2271" data-scale="0.6">
+      <div id="multiplayer-10" class="step slide" data-x="-2753" data-y="2751" data-scale="0.6">
          <h2>Step9: My friend moves</h2>
         <div style="font-size: 20px">
         <b>4. On executed</b> refresh canvas<br/>
-        <pre><code style="font-size: 14px" class="language-javascript">
+        <pre>
     //----------------------------------------------------------------------------------------
     //    Callback to display the maze after execute method
     //----------------------------------------------------------------------------------------
@@ -910,11 +774,21 @@ $("#submit-user").live("click tap", function(event) {
             }
         }
     });
-        </code></pre>
+        </pre>
         <b>Get latest from github?</b>
-        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git checkout step9</code></pre>
+        <pre> > git checkout step9</pre>
       </div>
       </div>
+
+<!--       <div id="multiplayer-11" class="step slide" data-x="-2093" data-y="2751" data-scale="0.6">
+        <h2></h2>
+        <div style="float: left; font-size: 20px;"> 
+
+        </div>
+      </div>
+
+<div id="multiplayer-12" class="step slide" data-x="-1433" data-y="2751" data-scale="0.6">
+</div> -->
 
       <!-- Conclusion -->
       <div id="conclusion" class="step section" data-x="-2953" data-y="-327" data-scale="3">
@@ -927,27 +801,11 @@ git commit -m "my changes"<br/>
 git remote add origin https://github.com/yourGithubUsername/KissingTurtlesGreach.git<br/>
 git push -u origin master<br/>
        </div>
-      </div>
     </div>
 
     <div class="hint">
       <p>Use a spacebar or arrow keys to navigate</p>
     </div>
-    <script>
-(function () {
-  function enhance (element) {
-    var txt = element.querySelector('code');
-    var canvas = element.querySelector('canvas');
-    var ctx = canvas.getContext('2d');
-    eval(txt.innerHTML);
-  }
-  var demos = document.querySelectorAll('.livedemo');
-  for (var i = 0; i < demos.length; i++) {
-    enhance(demos.item(i));
-  }
-})();
-    </script>
-    <script src="js/prism.js"></script>
     <script>
       if ("ontouchstart" in document.documentElement) { 
         document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
