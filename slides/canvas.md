@@ -15,3 +15,11 @@ To interract with javascript we first get the HTML element.
 Then we get a drawing canvas, here we use the `'2d'` context. There exists other contexts like `'webgl'` to draw more 3D-oriented [webgl](https://www.khronos.org/registry/webgl/specs/1.0/#2.1).
 
 There are two options to deal with canvas size versus CSS size. Either retrieve the value set by the integrator and scale content to that, or overwrite attributes written in the HTML with desired values. Notice than in the latter it is good to reset these values on resize, and to redraw the content as changing attributes clears canvas.
+
+## Basic: drawing paths
+
+The basic of canvas is drawing paths. Canvas behaves here like a pen you move on a paper from point to point following given paths.
+
+A very important aspect is that path drawing must occur within after a `ctx.beginPath()`. This tells canvas no trying to join the previous items. Then there are a lot of possible solutions to move your pen, the main ones being `ctx.lineTo(x, y)` to move straight and `ctx.bezierCurveTo(x1, y1, x2, y2, xend, yend)` for simple Bezier curves, but there also exists `moveTo(x, y)` to go somewhere without drawing anything.
+
+Paths can be styled with properties `strokeStyle` (color), `lineWidth` (thickness in pixels) and `lineCap` (extermity). By default the path is not drawn, it will only be so by calling at any moment `ctx.stroke()` method.

@@ -91,7 +91,6 @@
   ctx.fillText('(width, height)', canvas.width - (3 * step), canvas.height - (3 * step));
 
   ctx.stroke();
-  ctx.closePath();
 })();
         </script>
       </div>
@@ -120,14 +119,15 @@ canvas.height = h;</code></pre>
         <h2>Basic: drawing paths</h2>
         <div class="livedemo">
           <pre><code class="language-javascript">ctx.beginPath();
-ctx.lineWidth = 20;
-ctx.lineCap = 'round';
-ctx.strokeStyle = 'green';
+
 ctx.moveTo(25, 25);
 ctx.lineTo(405, 45);
-ctx.bezierCurveTo(200, 290, 10, 250, 80, 100);
-ctx.stroke();
-ctx.closePath();</code></pre>
+ctx.bezierCurveTo(200,290, 10, 250, 80, 100);
+
+ctx.strokeStyle = 'green';
+ctx.lineCap = 'round';
+ctx.lineWidth = 20;
+ctx.stroke();</code></pre>
           <canvas width="500" height="300"></canvas>
         </div>
       </div>
@@ -137,17 +137,17 @@ ctx.closePath();</code></pre>
         <div class="livedemo">
           <pre><code class="language-javascript">ctx.beginPath();
 
-ctx.fillStyle = 'blue';
 ctx.moveTo(25, 25);
 ctx.lineTo(405, 45);
 ctx.bezierCurveTo(200, 250, 10, 290, 80, 100);
+ctx.closePath();
+
+ctx.fillStyle = 'blue';
 ctx.fill();
 
 ctx.lineWidth = 5;
 ctx.strokeStyle = 'red';
-ctx.stroke();
-
-ctx.closePath();</code></pre>
+ctx.stroke();</code></pre>
           <canvas width="500" height="300"></canvas>
         </div>
       </div>
@@ -162,13 +162,11 @@ ctx.fillStyle = 'red';
 ctx.beginPath();
 ctx.rect(325, 25, 100, 100);
 ctx.fill();
-ctx.closePath();
 
 ctx.beginPath();
 ctx.arc(200, 200, 50, 0, 2 * Math.PI);
 ctx.fill();
-ctx.stroke();
-ctx.closePath();</code></pre>
+ctx.stroke();</code></pre>
           <canvas width="500" height="300"></canvas>
         </div>
       </div>
@@ -194,7 +192,6 @@ ctx.closePath();</code></pre>
       ctx1.fillStyle = ((i + j) % 2 === 0) ? 'red' : 'blue';
       ctx1.rect(i * canvas1.width / grid, j * canvas1.height / grid, canvas1.width / grid, canvas1.height / grid);
       ctx1.fill();
-      ctx1.closePath();
 
       ctx2.beginPath();
       ctx2.strokeStyle = 'green';
@@ -203,7 +200,6 @@ ctx.closePath();</code></pre>
       ctx2.moveTo(0, j * canvas2.height / grid);
       ctx2.lineTo((grid - 1) * canvas2.width / grid, j * canvas2.height / grid);
       ctx2.stroke();
-      ctx2.closePath();
     }
   }
 })();
@@ -226,7 +222,6 @@ ctx.beginPath();
 ctx.rect(-50, -50, 100, 100);
 ctx.fill();
 ctx.stroke();
-ctx.closePath();
 ctx.restore();</pre></code>
           <canvas width="500" height="300"></canvas>
         </div>
