@@ -118,8 +118,8 @@ ctx.closePath();</code></pre>
         <p>I want to see some kind of grid</a></p>
         <p>Edit <a href="../canvas/ktDrawBackground.js">ktDrawBackground.js</a></p>
         <p>Test in <a href="../canvas/background.html">background.html</a></p>
-        <canvas id="backgroundcanvas1" width="300" height="300" style="position: absolute; bottom: 1em; left: 1em"></canvas>
-        <canvas id="backgroundcanvas2" width="300" height="300" style="position: absolute; bottom: 1em; right: 1em"></canvas>
+        <canvas id="backgroundcanvas1" width="300" height="300" style="position: absolute; bottom: 1em; left: 1em; box-shadow: 1px 1px 12px #555"></canvas>
+        <canvas id="backgroundcanvas2" width="300" height="300" style="position: absolute; bottom: 1em; right: 1em; box-shadow: 1px 1px 12px #555"></canvas>
         <script>
 (function () {
   var canvas1 = document.getElementById('backgroundcanvas1');
@@ -127,6 +127,7 @@ ctx.closePath();</code></pre>
   var canvas2 = document.getElementById('backgroundcanvas2');
   var ctx2 = canvas2.getContext('2d');
   var grid = 10;
+  ctx2.translate(canvas2.width / (grid * 2), canvas2.height / (grid * 2));
   for (var i = 0; i < grid; i++) {
     for (var j = 0; j < grid; j++) {
       ctx1.beginPath();
@@ -137,10 +138,10 @@ ctx.closePath();</code></pre>
 
       ctx2.beginPath();
       ctx2.strokeStyle = 'green';
-      ctx2.moveTo((i + 1/2) * canvas2.width / grid, 0);
-      ctx2.lineTo((i + 1/2) * canvas2.width / grid, canvas2.height);
-      ctx2.moveTo(0, (j + 1/2) * canvas2.height / grid);
-      ctx2.lineTo(canvas2.width, (j + 1/2) * canvas2.height / grid);
+      ctx2.moveTo(i * canvas2.width / grid, 0);
+      ctx2.lineTo(i * canvas2.width / grid, (grid - 1) * canvas2.height / grid);
+      ctx2.moveTo(0, j * canvas2.height / grid);
+      ctx2.lineTo((grid - 1) * canvas2.width / grid, j * canvas2.height / grid);
       ctx2.stroke();
       ctx2.closePath();
     }
