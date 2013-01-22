@@ -59,3 +59,11 @@ An image can only be drawn horizontally, so referential transformations comes to
 The animation algorithm is very simple: the keep the origin and destination coordinates and draw all items as if they partially moved to the end using a linear transition. There are other transitions like the ones specified for [CSS transitions](http://dev.w3.org/csswg/css3-transitions/#transition-timing-function-property).
 
 For each frame we compute the progress ranging from 0 at the beginning to 1 at the end, and we compute the weighed average of origin and destination coordinates.
+
+## RequestAnimationFrame
+
+Canvas has to be drawn at each frame, the most basic way is to use `setInterval(f, 1000 / 60)` to be called 60 times per second.
+
+However that is a bit missing respect to the user. What if the browser cannot display 60 frames per second? What if the tab is in the background and those frames will not be seen by anyone? The proper answer to this question is to ask the browser "tell me when I should redraw". And this is exactly what `requestAnimationFrame` does.
+
+Small note on the parameter passed to the callback: [its specification changed](http://updates.html5rocks.com/2012/05/requestAnimationFrame-API-now-with-sub-millisecond-precision) to allow submillisecond precision, so using it to compute durations is harder. A simple workaround is to use `Date.now()` instead of the parameter for computations. The harder way is to use a proper [shim](http://paulirish.com/2011/requestanimationframe-for-smart-animating/) for that.

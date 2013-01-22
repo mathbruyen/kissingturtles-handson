@@ -233,8 +233,7 @@ ctx.restore();</pre></code>
       <div id="canvas-bitmaps" class="step slide" data-x="2623" data-y="483" data-scale="0.6">
         <h2>Include a bitmap</h2>
         <div class="livedemo">
-          <pre><code class="language-javascript">
-var image = new Image();
+          <pre><code class="language-javascript">var image = new Image();
 image.onload = function () {
   ctx.save();
   ctx.translate(150, 150);
@@ -271,12 +270,22 @@ if (progress >= 1) {
     from.y + (to.y - from.y) * progress
   );
   // Redo at next frame
-}
-</code></pre>
+}</code></pre>
       </div>
 
       <div id="canvas-requestanimationframe" class="step slide" data-x="2623" data-y="3" data-scale="0.6">
         <h2>requestAnimationFrame</h2>
+          <pre><code class="language-javascript">function iterate(timestamp) {
+  var progress = computeProgress(timestamp);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if (progress > 1) {
+    drawAt(1);
+  } else {
+    window.requestAnimationFrame(iterate);
+    drawAt(progress);
+  }
+}
+window.requestAnimationFrame(iterate);</pre></code>
       </div>
 
       <div id="canvas-animation" class="step slide" data-x="3283" data-y="3" data-scale="0.6">
