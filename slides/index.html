@@ -43,9 +43,57 @@
         <h2>HTML Element</h2>
         <pre><code class="language-markup">&lt;canvas
   id="mycanvas"
-  width="300" height="400"
-  style="width: 150px; height: 200px;"&gt;
+  width="1200" height="600"
+  style="width: 600px; height: 300px;"&gt;
 &lt;/canvas&gt;</code></pre>
+        <canvas id="htmlcanvas" width="600" height="300" style="position: absolute; bottom: 1em; right: 1em; width: 600px; height: 300px; box-shadow: 1px 1px 12px #555"></canvas>
+        <script>
+(function () {
+  var canvas = document.getElementById('htmlcanvas');
+  var ctx = canvas.getContext('2d');
+
+  var step = 10;
+  ctx.lineWidth = 2;
+  ctx.font = 'italic 20px Calibri';
+  ctx.strokeStyle = 'red';
+  ctx.fillStyle = 'blue';
+
+  ctx.beginPath();
+
+  ctx.moveTo(2 * step, 2 * step);
+  ctx.lineTo(2 * step, canvas.height - (2 * step));
+  ctx.lineTo(step, canvas.height - (3 * step));
+  ctx.moveTo(2 * step, canvas.height - (2 * step));
+  ctx.lineTo(3 * step, canvas.height - (3 * step));
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('y', 4 * step, canvas.height - (3 * step));
+
+  ctx.moveTo(2 * step, 2 * step);
+  ctx.lineTo(canvas.width - (2 * step), 2 * step);
+  ctx.lineTo(canvas.width - (3 * step), step);
+  ctx.moveTo(canvas.width - (2 * step), 2 * step);
+  ctx.lineTo(canvas.width - (3 * step), 3 * step);
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  ctx.fillText('x', canvas.width - (3 * step), 4 * step);
+
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  ctx.fillText('(0, 0)', 3 * step, 3 * step);
+
+  ctx.moveTo(canvas.width - step, canvas.height - (2 * step));
+  ctx.lineTo(canvas.width - (3 * step), canvas.height - (2 * step));
+  ctx.moveTo(canvas.width - (2 * step), canvas.height - step);
+  ctx.lineTo(canvas.width - (2 * step), canvas.height - (3 * step));
+  ctx.textAlign = 'right';
+  ctx.textBaseline = 'bottom';
+  ctx.fillText('(width, height)', canvas.width - (3 * step), canvas.height - (3 * step));
+
+  ctx.stroke();
+  ctx.closePath();
+})();
+        </script>
       </div>
 
       <div id="canvas-js" class="step slide" data-x="2623" data-y="-477" data-scale="0.6">
