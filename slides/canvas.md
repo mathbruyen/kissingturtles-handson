@@ -53,3 +53,9 @@ Including a bitmap is as simple as creating an `Image` object with the correct s
 In practice we usually reuse a lot images and reloading it every time is costly, so the best is to keep a reference to the image (given that it is not a memory leak).
 
 An image can only be drawn horizontally, so referential transformations comes to help for rotating it.
+
+## How to animate
+
+The animation algorithm is very simple: the keep the origin and destination coordinates and draw all items as if they partially moved to the end using a linear transition. There are other transitions like the ones specified for [CSS transitions](http://dev.w3.org/csswg/css3-transitions/#transition-timing-function-property).
+
+For each frame we compute the progress ranging from 0 at the beginning to 1 at the end, and we compute the weighed average of origin and destination coordinates.

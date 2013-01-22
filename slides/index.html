@@ -256,6 +256,23 @@ image.src = 'images/tree.png';</pre></code>
 
       <div id="canvas-animationbackground" class="step slide" data-x="1963" data-y="3" data-scale="0.6">
         <h2>How to animate</h2>
+        <pre><code class="language-javascript">var duration = 1000;
+
+var from = { x: 1, y: 1 };
+var to = { x: 3, y: 4 };
+
+var progress = (Date.now() - startTime) / duration;
+if (progress >= 1) {
+  drawAt(to.x, to.y);
+  // Stop
+} else {
+  drawAt(
+    from.x + (to.x - from.x) * progress,
+    from.y + (to.y - from.y) * progress
+  );
+  // Redo at next frame
+}
+</code></pre>
       </div>
 
       <div id="canvas-requestanimationframe" class="step slide" data-x="2623" data-y="3" data-scale="0.6">
