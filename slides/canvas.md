@@ -14,7 +14,7 @@ To interract with javascript we first get the HTML element.
 
 Then we get a drawing canvas, here we use the `'2d'` context. There exists other contexts like `'webgl'` to draw more 3D-oriented [webgl](https://www.khronos.org/registry/webgl/specs/1.0/#2.1).
 
-There are two options to deal with canvas size versus CSS size. Either retrieve the value set by the integrator and scale content to that, or overwrite attributes written in the HTML with desired values. Notice than in the latter it is good to reset these values on resize, and to redraw the content as changing attributes clears canvas.
+The script has to handle the `width` and `height` attributes as they constrain displayed content.
 
 ## Basic: drawing paths
 
@@ -45,6 +45,8 @@ The second canvas primitive is changing the referential. Instead of doing comple
 Restoring the origin to its expected place is then tricky. Except that it is done automatically. The practice is to save the context on a stack with `ctx.save()` method, do the changes and draw the path, and then calling `ctx.restore()` method so that the canvas is restored to the previous state from the stack. Doing a referential change modifies the current state, allowing to compose transformations if every one properly restores to the context it got in entry.
 
 Context saving also includes fill and stroke styles, so it is actually a good practice to save before modifying a style and restore after having drawn the path.
+
+And this is my favorite way to deal with canvas pixels: instead of doing complex calculations I prefer to scale things to fit with values manipulated by the script.
 
 ## Include an image
 
