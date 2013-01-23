@@ -16,6 +16,9 @@
     <link href="css/slides.css" rel="stylesheet" />
     <link href="css/prism.css" rel="stylesheet" />
     <link rel="shortcut icon" href="favicon.png" />
+
+
+
   </head>
     <body class="impress-not-supported">
 
@@ -31,8 +34,71 @@
 
       <!-- Introduction section overview -->
       <div id="introduction" class="step section" data-x="0" data-y="-3000" data-scale="3">
-        <h2>Introduction</h2>
+        <h2>HTML5 Games Hands-on</h2>
       </div>
+
+      <div id="introduction-1" class="step slide"  data-x="-990" data-y="-3150" data-scale="0.6">
+        <h2>Where's the idea from?</h2>
+        <h3>Kissing Turtles</h3>
+        <div style="float: left; font-size: 20px; text-align: left; display: inline-block; width: 50%"><br/>
+        <ul>
+        <li>+ Initiative started in november for Grails48</li><img width="70" src="images/g48_logo10.png" alt="grails48"/>
+        <li>+ Game for kids to learn programming</li>
+        <li>+ Simple Groovy DSL to make the turtle move</li> <br/>
+        <li>==> having fun coding for a WE</li> 
+        </ul>       
+        </div>
+        <div style="width:50%;float:right;font-size:30px;text-align:right;display:inline-block;">
+            <!--iframe src="http://kissingturtles.cloudfoundry.com" width="500" height="600" name="myFrame" id="myFrame"></iframe-->
+            <img width="80%" src="images/kissingturtles.png"/>
+        </div>
+    </div>
+
+      <div id="introduction-2" class="step section" data-x="-330" data-y="-3150" data-scale="0.6">
+        <h2>Who's the guys?</h2>
+        <div style="font-size: 30px;">So guys your professional<br/> game coders?</br></div><br/>
+        
+            <div style="width:50%;display:inline-block;float:left">
+                <img width="50%" src="images/corinne.jpg"/>
+                <h4>Corinne Krych</h4>
+            </div>
+
+            <div style="width:50%;display:inline-block;float:right">
+                <img width="50%" src="images/mathieu.jpeg"/>
+                <h4>Mathieu Bruyen</h4>
+            </div>
+      </div>
+
+      <div id="introduction-3" class="step section" data-x="330" data-y="-3150" data-scale="0.6">
+        <h2>What about you?</h2><br/>
+        <div style="float: left; font-size: 30px;">This session is for <b>You!</b><br/>
+          let's adjust the pace to fit you better</br>
+          => it's interactive</br>
+          it should be fun</br>
+          => do not hesitate to pair</br>          
+
+        </div>
+      </div>
+
+      <div id="introduction-4" class="step section" data-x="990" data-y="-3150" data-scale="0.6">
+        <h2>Set-up</h2>
+        <div style="font-size: 20px">
+        <b>Software required</b><br/>
+        grails2.1+<br/>
+        html5-mobile-scaffold<br/>
+        <b>KissingTurtlesGreach Step by Step</b><br/>
+        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git clone https://github.com/corinnekrych/KissingTurtlesGreach.git</code></pre>
+        <span style="font-size: 20px;"><img width="30" src="images/Warning-icon.png" alt="warning" /><b> you won't loose your hard work</b></span><br/>
+        we work with git branches<br/>
+        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git checkout step1_todo</code></pre>
+        do your changes and commit them
+        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git commit -a -m "my hard work"</code></pre>
+        get the end result for step 1
+        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git checkout step1</code></pre>
+        <b>KissingTurtles tutorial</b><br/>
+        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git clone https://github.com/mathbruyen/kissingturtles-handson.git</code></pre>
+        </div>
+    </div>
 
       <!-- Canvas -->
       <div id="canvas" class="step section" data-x="2953" data-y="-327" data-scale="3">
@@ -439,38 +505,116 @@ var to = {
       </div>
 
       <div id="scaffolding-1" class="step slide" data-x="773" data-y="2277" data-scale="0.6">
-        <h2>Set-up</h2>
-        <div style="font-size: 20px">
-        <b>Software required</b><br/>
-        grails2.1+<br/>
-        html5-mobile-scaffold<br/>
-        <b>KissingTurtlesGreach Step by Step</b><br/>
-        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git clone https://github.com/corinnekrych/KissingTurtlesGreach.git</code></pre>
-        <span style="font-size: 20px;"><img width="30" src="images/Warning-icon.png" alt="warning" /><b> you won't loose your hard work</b></span><br/>
-        we work with git branches<br/>
-        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git checkout step1_todo</code></pre>
-        do your changes and commit them
-        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git commit -a -m "my hard work"</code></pre>
-        get the end result for step 1
-        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git checkout step1</code></pre>
-        <b>KissingTurtles tutorial</b><br/>
-        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git clone https://github.com/mathbruyen/kissingturtles-handson.git</code></pre>
+        <h2>Introduction to Mobile</h2></br>
+        <div style="float:left;display:inline-block;width:40%;font-size: 20px">
+        <b>Mobile Grails plugins on offer</b><br/>
+        jquery-mobile-scaffolding <br/>
+        spring-mobile plugin<br/>
+        html5-mobile-scaffolding</br>
+        phonegapbuild<br/>
+       </div>
+        <div style="width:50%;float:right;font-size:30px;text-align:right;display:inline-block;">
+            <img width="400px" src="images/groovymag.png"/>
         </div>
       </div>
 
     
       <div id="scaffolding-2" class="step slide" data-x="1433" data-y="2277" data-scale="0.6">
-        <h2>Kissing Turtles</h2>
-        <div style="float: left; font-size: 20px; text-align: left; display: inline-block; width: 30%"><br/>
-        <p>Intiative started in november for Grails48</p><img width="70" src="images/g48_logo10.png" alt="grails48"/>
-        <p>Game for kids to learn programming</p>
-        <p>Simple Groovy DSL to make the turtle move</p>        
-        </div>
-        <div style="float:right;font-size:30px;text-align:right;display:inline-block;">
-            <!--iframe src="http://kissingturtles.cloudfoundry.com" width="500" height="600" name="myFrame" id="myFrame"></iframe-->
-            <img width="380" src="images/kissingturtles.png"/>
-        </div>
+        <h2>jQuery mobile</h2>
+        <div style="font-size: 20px; text-align: left;"><br/>
+        <b>What is it?</b>
+        is a framework for building mobile app to handle for you:<br/>
+        responsive ui,<br/>
+        progressive enhancement<br/>
+        HTML5 (data-*) + CSS + JavaScript (powered by jQuery)<br/>
+        <b>Let me show you simple example</b>
+      </div>
     </div>
+
+      <div id="scaffolding-2.1" class="step slide" data-x="1300" data-y="2300" data-scale="0.15">
+        <h2>Simple HTML code</h2>
+        <div style="font-size: 20px; text-align: left;"><br/>
+        <pre><code style="font-size: 14px" class="language-markup">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+&lt;div id=&quot;start-game&quot;&gt;
+    &lt;div&gt;
+        &lt;h1&gt;Kissing Turtles&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;start-presentation&quot;&gt;
+        &lt;div&gt;
+            &lt;img width=&quot;20%&quot; src=&quot;images/turtle.png&quot;/&gt;
+            &lt;img width=&quot;20%&quot; src=&quot;images/pig.png&quot;/&gt;
+        &lt;/div&gt;
+        &lt;div &gt;
+            &lt;textarea readonly&gt;Franklin and Emily have a rendez-vous.&lt;/textarea&gt;&lt;/div&gt;
+        &lt;div&gt;
+            &lt;ul&gt;
+            &lt;li&gt;&lt;a href=&quot;#section-list-games&quot;&gt;Play&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#section-settings&quot;&gt;Settings&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;h4&gt;Grails48 - The World's Hackathon&lt;/h4&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+    </div>    
+  
+      <div id="scaffolding-2.2" class="step slide" data-x="1500" data-y="2300" data-scale="0.15">
+        <h2>Display with HTML only</h2>
+        <div style="font-size: 20px; text-align: left;"><br/>
+        <iframe width="500px" height="600px" src="ex.html"></iframe>
+      </div>
+    </div>   
+   
+      <div id="scaffolding-2.3" class="step slide" data-x="1300" data-y="2400" data-scale="0.15">
+        <h2>HTML with jQuery mobile</h2>
+        <div style="font-size: 20px; text-align: left;"><br/>
+        <pre><code style="font-size: 14px" class="language-markup">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;header&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css&quot; /&gt;
+&lt;script src=&quot;http://code.jquery.com/jquery-1.7.1.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js&quot;&gt;&lt;/script&gt;
+&lt;/header&gt;    
+&lt;body&gt;
+&lt;section data-role=&quot;page&quot; id=&quot;start-game&quot;&gt;
+    &lt;div data-role=&quot;header&quot; data-position=&quot;fixed&quot;&gt;
+        &lt;h1&gt;Kissing Turtles&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;center-wrapper&quot; data-role=&quot;content&quot; id=&quot;start-presentation&quot;&gt;
+        &lt;div&gt;
+            &lt;img width=&quot;20%&quot; src=&quot;images/turtle.png&quot;/&gt;
+            &lt;img width=&quot;20%&quot; src=&quot;images/pig.png&quot;/&gt;
+        &lt;/div&gt;
+        &lt;div data-theme=&quot;a&quot; class=&quot;center-wrapper&quot; data-content-theme=&quot;a&quot;&gt;
+            &lt;textarea readonly&gt;Franklin and Emily have a rendez-vous.&lt;/textarea&gt;&lt;/div&gt;
+        &lt;div&gt;
+            &lt;ul data-role=&quot;listview&quot; data-inset=&quot;true&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;#section-list-games&quot; data-role=&quot;button&quot; data-inline=&quot;true&quot;&gt;Play&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#section-settings&quot; data-role=&quot;button&quot; data-inline=&quot;true&quot;&gt;Settings&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div data-role=&quot;footer&quot; data-position=&quot;fixed&quot;&gt;
+        &lt;h4&gt;Grails48 - The World's Hackathon&lt;/h4&gt;
+    &lt;/div&gt;
+&lt;/section&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+    </div>  
+
+    <div id="scaffolding-2.4" class="step slide" data-x="1500" data-y="2400" data-scale="0.15">
+        <h2>Display with jQuery js, css , data-*</h2>
+        <div style="font-size: 20px; text-align: left;"><br/>
+        <iframe width="500px" height="600px" src="ex_jquery.html"></iframe>
+      </div>
+    </div>        
 
       <div id="scaffolding-3" class="step slide" data-x="2093" data-y="2277" data-scale="0.6">
         <h2>New project</h2><br/>
