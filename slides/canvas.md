@@ -46,9 +46,11 @@ Restoring the origin to its expected place is then tricky. Except that it is don
 
 Context saving also includes fill and stroke styles, so it is actually a good practice to save before modifying a style and restore after having drawn the path.
 
-## Include a bitmap
+## Include an image
 
-Including a bitmap is as simple as creating an `Image` object with the correct source and waiting for it to properly load before actually drawing it. If the image is not loaded nothing is drawn on the canvas. It also means it is drawn asynchronously, later on: take care of non final variables and that the image will likely appear on top.
+Including an image is as simple as creating an `Image` object with the correct source and painting it to the canvas.
+
+Well, images are loaded asynchronously, and one must wait for it to properly load before actually drawing it. If the image is not loaded nothing is drawn on the canvas. Asynchronously also means that variables may have different values once the code is executed, that the canvas context may have been restored, and that the image may appear on top of other paths that appear to be drawn after it when looking at the code.
 
 In practice we usually reuse a lot images and reloading it every time is costly, so the best is to keep a reference to the image (given that it is not a memory leak).
 
