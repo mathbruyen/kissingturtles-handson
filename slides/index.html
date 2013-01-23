@@ -349,17 +349,16 @@ window.requestAnimationFrame(iterate);</pre></code>
       <div id="canvas-animation" class="step slide" data-x="3283" data-y="3" data-scale="0.6">
         <h2>Draw an animation!</h2>
         <p>I want to see the players moving</a></p>
-        <p>Edit <a href="../canvas/ktAnimate.js">ktDrawFrame.js</a></p>
-        <p>Test in <a href="../canvas/animate.html">frame.html</a></p>
-        <pre style="position: absolute; bottom: 1em; left: 1em;"><code id="animationcontent" class="language-javascript">{
-  franklin: {
-    role: 'turtle1', 
-    from: { x: 8, y: 6,
-      rotation: Math.PI },
-    to: { x: 1, y: 6,
-      rotation: 3 * Math.PI }
-  }
-}</pre></code>
+        <p>Edit <a href="../canvas/ktAnimate.js">ktAnimate.js</a></p>
+        <p>Test in <a href="../canvas/animate.html">animate.html</a></p>
+        <pre style="position: absolute; bottom: 1em; left: 1em;"><code id="animationcontent" class="language-javascript">var from = {
+  franklin: { role: 'turtle1', x: 8,
+    y: 6, rotation: Math.PI }
+};
+var to = {
+  franklin: { role: 'turtle1', x: 1,
+    y: 6, rotation: 3 * Math.PI }
+};</pre></code>
         <canvas id="animationcanvas" width="300" height="300" style="position: absolute; bottom: 1em; right: 1em; box-shadow: 1px 1px 12px #555"></canvas>
         <script>
 (function () {
@@ -407,14 +406,15 @@ window.requestAnimationFrame(iterate);</pre></code>
       return from + (to - from) * progress;
     }
     function drawAll(progress) {
-      var o;
-      for (var name in content) {
-        if (content.hasOwnProperty(name)) {
-          o = content[name];
-          draw(o.role, {
-            x: average(o.from.x, o.to.x, progress),
-            y: average(o.from.y, o.to.y, progress),
-            rotation: average(o.from.rotation, o.to.rotation, progress),
+      var f, t;
+      for (var name in content.from) {
+        if (content.from.hasOwnProperty(name)) {
+          f = content.from[name];
+          t = content.to[name];
+          draw(f.role, {
+            x: average(f.x, t.x, progress),
+            y: average(f.y, t.y, progress),
+            rotation: average(f.rotation, t.rotation, progress),
           });
         }
       }
@@ -434,7 +434,7 @@ window.requestAnimationFrame(iterate);</pre></code>
     setTimeout(iterate, 1000 / 60);
   }
 
-  var content = eval('(' + document.getElementById('animationcontent').innerHTML + ')');
+  var content = eval('(function(){' + document.getElementById('animationcontent').innerHTML + ' return { from: from, to: to }})()');
   var launch = function () {
     animate(content, launch);
   }
