@@ -255,9 +255,60 @@ image.src = 'images/tree.png';</pre></code>
       </div>
 
       <div id="canvas-singleframe" class="step slide" data-x="1963" data-y="483" data-scale="0.6">
-        <h2>Let's draw a single frame</h2>
-        <a href="../canvas/ktDraw.js">Edit</a>
-        <a href="../canvas/frame.html">Test</a>
+        <h2>Draw single frame!</h2>
+        <p>I want to see the players and obstacles</a></p>
+        <p>Edit <a href="../canvas/ktDrawFrame.js">ktDrawFrame.js</a></p>
+        <p>Test in <a href="../canvas/frame.html">frame.html</a></p>
+        <pre style="position: absolute; bottom: 1em; left: 1em;"><code id="framecontent" class="language-javascript">{
+  franklin: {
+    role: 'turtle1', x: 5, y: 6,
+    rotation: Math.PI / 4
+  },
+  tree: {
+    role: 'tree', x: 2, y: 2,
+    rotation: 0
+  }
+}</pre></code>
+        <canvas id="framecanvas" width="300" height="300" style="position: absolute; bottom: 1em; right: 1em; box-shadow: 1px 1px 12px #555"></canvas>
+        <script>
+(function () {
+  var canvas = document.getElementById('framecanvas');
+  var ctx = canvas.getContext('2d');
+  var grid = 10;
+  ctx.scale(canvas.width / grid, canvas.height / grid);
+  ctx.translate(1/2, 1/2);
+  for (var i = 0; i < grid; i++) {
+    for (var j = 0; j < grid; j++) {
+      ctx.beginPath();
+      ctx.lineWidth = 0.01;
+      ctx.strokeStyle = 'green';
+      ctx.moveTo(i, 0);
+      ctx.lineTo(i, grid - 1);
+      ctx.moveTo(0, j);
+      ctx.lineTo(grid - 1, j);
+      ctx.stroke();
+    }
+  }
+
+  function draw(object) {
+    var img = new Image();
+    img.onload = function () {
+      ctx.save();
+      ctx.translate(object.x, grid - 1 -object.y);
+      ctx.rotate(object.rotation);
+      ctx.drawImage(img, -1/2, -1/2, 1, 1);
+      ctx.restore();
+    };
+    img.src = 'images/' + object.role + '.png';
+  }
+  var objects = eval('(' + document.getElementById('framecontent').innerHTML + ')');
+  for (var name in objects) {
+    if (objects.hasOwnProperty(name)) {
+      draw(objects[name]);
+    }
+  }
+})();
+        </script>
       </div>
 
       <div id="canvas-animationbackground" class="step slide" data-x="1963" data-y="3" data-scale="0.6">
