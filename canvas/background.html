@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Draw scenery</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
@@ -9,20 +10,17 @@ body {
 }
 #canvas {
   display: block;
-  outline: 1px solid red;
   width: 100%;
+  box-shadow: 1px 1px 8px #555;
   max-width: 40em;
   margin: 0 auto;
 }
     </style>
-    <script type="application/javascript" src="ktDraw.js"></script>
+    <script type="application/javascript" src="ktDrawBackground.js"></script>
     <script type="application/javascript">
 //<!--
 window.onload = function () {
-  var canvas = document.getElementById('canvas');
-  window.ktDraw(canvas, {
-
-  }, 15);
+  window.ktDrawBackground(document.getElementById('canvas'), 15);
 };
 //-->
     </script>
