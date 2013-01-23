@@ -17,6 +17,7 @@ body {
 }
     </style>
     <script type="application/javascript" src="ktDrawBackground.js"></script>
+    <script type="application/javascript" src="ktPreload.js"></script>
     <script type="application/javascript" src="ktDrawFrame.js"></script>
     <script type="application/javascript">
 //<!--
@@ -24,37 +25,39 @@ window.onload = function () {
   var canvas = document.getElementById('canvas');
   var grid = 15;
   window.ktDrawBackground(canvas, grid);
-  window.ktDrawFrame(canvas, grid, {
-    franklin: {
-      role: 'turtle1',
-      x: 12,
-      y: 2,
-      rotation: Math.PI
-    },
-    emily: {
-      role: 'turtle2',
-      x: 3,
-      y: 10,
-      rotation: Math.PI / 2
-    },
-    tree1: {
-      role: 'tree',
-      x: 0,
-      y: 0,
-      rotation: 0
-    },
-    tree2: {
-      role: 'tree',
-      x: grid - 1,
-      y: grid - 1,
-      rotation: 0
-    },
-    tree3: {
-      role: 'tree',
-      x: 10.5,
-      y: 5.5,
-      rotation: Math.PI / 7
-    }
+  window.ktPreload(['turtle1', 'turtle2', 'tree'], function (preloaded) {
+    window.ktDrawFrame(canvas, grid, preloaded, {
+      franklin: {
+        role: 'turtle1',
+        x: 12,
+        y: 2,
+        rotation: Math.PI
+      },
+      emily: {
+        role: 'turtle2',
+        x: 3,
+        y: 10,
+        rotation: Math.PI / 2
+      },
+      tree1: {
+        role: 'tree',
+        x: 0,
+        y: 0,
+        rotation: 0
+      },
+      tree2: {
+        role: 'tree',
+        x: grid - 1,
+        y: grid - 1,
+        rotation: 0
+      },
+      tree3: {
+        role: 'tree',
+        x: 10.5,
+        y: 5.5,
+        rotation: Math.PI / 7
+      }
+    });
   });
 };
 //-->
