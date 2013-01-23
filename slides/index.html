@@ -829,7 +829,8 @@ $("#submit-user").live("click tap", function(event) {
     <div id="scaffolding-12-1" class="step slide" data-x="2300" data-y="2751" data-scale="0.1">
       <div style="float: left; font-size: 20px;"> 
       <b>Click on execute</b>
-        <pre><code style="font-size: 14px" class="language-javascript">//----------------------------------------------------------------------------------------
+        <pre ><code style="font-size: 14px" class="language-javascript">
+    //----------------------------------------------------------------------------------------
     //   Click on Execute my DSL script brings you here
     //----------------------------------------------------------------------------------------
     $("#submit-game").live("click tap", function(event) {
@@ -841,7 +842,8 @@ $("#submit-user").live("click tap", function(event) {
           user: localStorage.getItem("KissingTurtles.UserId")});
     });</code></pre>
 <b>Callback on executed</b>
-    <pre><code style="font-size: 14px" class="language-javascript">//----------------------------------------------------------------------------------------
+    <pre><code style="font-size: 14px" class="language-javascript">
+    //----------------------------------------------------------------------------------------
     //    Callback to display the maze after execute method
     //----------------------------------------------------------------------------------------
     that.model.executed.attach(function (data, event) {
@@ -977,7 +979,7 @@ $("#submit-user").live("click tap", function(event) {
       <h2>Step7: Franklin already knows...</h2>
       <div style="font-size: 20px">
         <b>Back on created callback</b>
-        <pre><code style="font-size: 14px" class="language-javascript">that.model.createdItem.attach(function (data, event) {
+        <pre data-line="12, 21" style="font-size: 14px" ><code class="language-javascript">that.model.createdItem.attach(function (data, event) {
         if (data.item.errors) {
             $.each(data.item.errors, function (index, error) {
                 $('#input-game-' + error.field).validationEngine('showPrompt', error.message, 'fail');
@@ -1062,7 +1064,7 @@ $("#submit-user").live("click tap", function(event) {
         <h2>Step8: Emily joins</h2>
       <div style="font-size: 20px">
         <b>Callback after joining the game</b>
-        <pre><code style="font-size: 14px" class="language-javascript">that.model.updatedItem.attach(function (data, event) {
+        <pre data-line="15, 21" style="font-size: 14px"><code class="language-javascript">that.model.updatedItem.attach(function (data, event) {
         if (data.item.errors) {
             $.each(data.item.errors, function(index, error) {
                 $('#input-game-' + error.field).validationEngine('showPrompt',error.message, 'fail');
