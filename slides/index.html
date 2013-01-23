@@ -294,7 +294,7 @@ image.src = 'images/tree.png';</pre></code>
     var img = new Image();
     img.onload = function () {
       ctx.save();
-      ctx.translate(object.x, grid - 1 -object.y);
+      ctx.translate(object.x, grid - 1 - object.y);
       ctx.rotate(object.rotation);
       ctx.drawImage(img, -1/2, -1/2, 1, 1);
       ctx.restore();
@@ -334,8 +334,8 @@ function draw(progress) {
 
       <div id="canvas-requestanimationframe" class="step slide" data-x="2623" data-y="3" data-scale="0.6">
         <h2>requestAnimationFrame</h2>
-          <pre><code class="language-javascript">function iterate(timestamp) {
-  var progress = computeProgress(timestamp);
+          <pre><code class="language-javascript">function iterate() {
+  var progress = computeProgress();
   if (progress > 1) {
     draw(1);
   } else {
@@ -347,9 +347,100 @@ window.requestAnimationFrame(iterate);</pre></code>
       </div>
 
       <div id="canvas-animation" class="step slide" data-x="3283" data-y="3" data-scale="0.6">
-        <h2>Let's animate</h2>
-        <a href="../canvas/ktAnimate.js">Edit</a>
-        <a href="../canvas/animate.html">Test</a>
+        <h2>Draw an animation!</h2>
+        <p>I want to see the players moving</a></p>
+        <p>Edit <a href="../canvas/ktAnimate.js">ktDrawFrame.js</a></p>
+        <p>Test in <a href="../canvas/animate.html">frame.html</a></p>
+        <pre style="position: absolute; bottom: 1em; left: 1em;"><code id="animationcontent" class="language-javascript">{
+  franklin: {
+    role: 'turtle1', 
+    from: { x: 8, y: 6,
+      rotation: Math.PI },
+    to: { x: 1, y: 6,
+      rotation: 3 * Math.PI }
+  }
+}</pre></code>
+        <canvas id="animationcanvas" width="300" height="300" style="position: absolute; bottom: 1em; right: 1em; box-shadow: 1px 1px 12px #555"></canvas>
+        <script>
+(function () {
+  var canvas = document.getElementById('animationcanvas');
+  var ctx = canvas.getContext('2d');
+  var grid = 10;
+  ctx.scale(canvas.width / grid, canvas.height / grid);
+  ctx.translate(1/2, 1/2);
+  
+  function drawGrid() {
+    for (var i = 0; i < grid; i++) {
+      for (var j = 0; j < grid; j++) {
+        ctx.beginPath();
+        ctx.lineWidth = 0.01;
+        ctx.strokeStyle = 'green';
+        ctx.moveTo(i, 0);
+        ctx.lineTo(i, grid - 1);
+        ctx.moveTo(0, j);
+        ctx.lineTo(grid - 1, j);
+        ctx.stroke();
+      }
+    }
+  }
+
+  var images = {};
+  function draw(role, place) {
+    if (!images[role]) {
+      images[role] = new Image();
+      images[role].src = 'images/' + role + '.png';
+    }
+    ctx.save();
+    ctx.translate(place.x, grid - 1 - place.y);
+    ctx.rotate(place.rotation);
+    ctx.drawImage(images[role], -1/2, -1/2, 1, 1);
+    ctx.restore();
+  }
+
+  var duration = 3000;
+  function animate(content, callback) {
+    var startTime = Date.now();
+    function computeProgress() {
+      return (Date.now() - startTime) / duration;
+    }
+    function average(from, to, progress) {
+      return from + (to - from) * progress;
+    }
+    function drawAll(progress) {
+      var o;
+      for (var name in content) {
+        if (content.hasOwnProperty(name)) {
+          o = content[name];
+          draw(o.role, {
+            x: average(o.from.x, o.to.x, progress),
+            y: average(o.from.y, o.to.y, progress),
+            rotation: average(o.from.rotation, o.to.rotation, progress),
+          });
+        }
+      }
+    }
+    function iterate() {
+      var progress = computeProgress();
+      ctx.clearRect(-1, -1, grid + 1, grid + 1);
+      drawGrid();
+      if (progress > 1) {
+        drawAll(1);
+        callback();
+      } else {
+        setTimeout(iterate, 1000 / 60);
+        drawAll(progress);
+      }
+    }
+    setTimeout(iterate, 1000 / 60);
+  }
+
+  var content = eval('(' + document.getElementById('animationcontent').innerHTML + ')');
+  var launch = function () {
+    animate(content, launch);
+  }
+  launch();
+})();
+        </script>
       </div>
 
       <!-- Scaffolding -->
