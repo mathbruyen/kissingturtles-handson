@@ -22,7 +22,7 @@ The basic of canvas is drawing paths. Canvas behaves here like a pen you move on
 
 A very important aspect is that path drawing must occur within after a `ctx.beginPath()`. This tells canvas no trying to join the previous items. Then there are a lot of possible solutions to move your pen, the main ones being `ctx.lineTo(x, y)` to move straight and `ctx.bezierCurveTo(x1, y1, x2, y2, xend, yend)` for simple Bezier curves, but there also exists `moveTo(x, y)` to go somewhere without drawing anything.
 
-Paths can be styled with properties `strokeStyle` (any CSS valid color, includes alpha transparency), `lineWidth` (thickness in pixels) and `lineCap` (extermity). By default the path is not drawn, it will only be so by calling at any moment `ctx.stroke()` method.
+Paths can be styled with properties `strokeStyle` (color, similar to CSS color, includes alpha transparency and [gradients](http://www.w3.org/TR/2dcontext/#fill-and-stroke-styles)), `lineWidth` (thickness in pixels) and `lineCap` (extermity). By default the path is not drawn, it will only be so by calling at any moment `ctx.stroke()` method.
 
 ## Filling paths
 
