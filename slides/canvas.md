@@ -38,15 +38,15 @@ The rectangle is pretty obvious with `ctx.rect(topleftx, toplefty, width, height
 
 Circle actually comes from the ability to draw an arc other a whole turn.
 
-## Playing with origin
+## Playing with referential
 
 The second canvas primitive is changing the referential. Instead of doing complex calculation in javascript, it is sometimes easier to move the origin, rotate axes, or scale them (scaling with negative number works too).
 
-Restoring the origin to its expected place is then tricky. Except that it is done automatically. The practice is to save the context on a stack with `ctx.save()` method, do the changes and draw the path, and then calling `ctx.restore()` method so that the canvas is restored to the previous state from the stack. Doing a referential change modifies the current state, allowing to compose transformations if every one properly restores to the context it got in entry.
+Restoring the origin to its expected place after an operation could be tricky. Except that canvas helps with that. The practice is to save the context on a stack with `ctx.save()` method, do the changes and draw the path, and then calling `ctx.restore()` method so that the canvas is restored to the previous state from the stack. Doing a referential change modifies the current state, allowing to compose transformations if every one properly restores to the context it got in entry.
 
 Context saving also includes fill and stroke styles, so it is actually a good practice to save before modifying a style and restore after having drawn the path.
 
-And this is my favorite way to deal with canvas pixels: instead of doing complex calculations I prefer to scale things to fit with values manipulated by the script.
+With that it is possible to easily put the origin on bottom left (more common in some countries) with `ctx.translate(0, canvas.height)` and `ctx.scale(1, -1)`.
 
 ## Include an image
 
