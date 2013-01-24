@@ -16,7 +16,7 @@ window.ktDrawFrame = (function() {
       if (objects.hasOwnProperty(name)) {
         ctx.save();
         ctx.translate(objects[name].x, grid - 1 - objects[name].y);
-        ctx.rotate(objects[name].rotation);
+        ctx.rotate(- objects[name].rotation);
         ctx.drawImage(preloaded[objects[name].role], -1/2, -1/2, 1, 1);
         ctx.restore();
       }
