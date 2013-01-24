@@ -8,7 +8,7 @@ It has two required integer [attributes](http://www.whatwg.org/specs/web-apps/cu
 
 Since it the canvas will be manipulated through javascript, we have to add a way to retrieve it, like an ID.
 
-## Interracting with javascript
+## Interacting with javascript
 
 To interract with javascript we first get the HTML element.
 
