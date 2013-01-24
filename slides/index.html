@@ -169,7 +169,7 @@
       </div>
 
       <div id="canvas-js" class="step slide" data-x="2623" data-y="-477" data-scale="0.6">
-        <h2>Interracting with javascript</h2>
+        <h2>Interacting with javascript</h2>
         <pre><code class="language-javascript">var canvas = document.getElementById('mycanvas');
 var ctx = canvas.getContext('2d');
 
@@ -407,14 +407,16 @@ window.requestAnimationFrame(iterate);</pre></code>
         <p>I want to see the players moving</a></p>
         <p>Edit <a href="../canvas/ktAnimate.js">ktAnimate.js</a></p>
         <p>Test in <a href="../canvas/animate.html">animate.html</a></p>
-        <pre style="position: absolute; bottom: 1em; left: 1em;"><code id="animationcontent" class="language-javascript">var from = {
-  franklin: { role: 'turtle1', x: 8,
-    y: 6, rotation: Math.PI }
-};
-var to = {
-  franklin: { role: 'turtle1', x: 1,
-    y: 6, rotation: 3 * Math.PI }
-};</pre></code>
+        <pre style="position: absolute; bottom: 1em; left: 1em;"><code id="animationcontent" class="language-javascript">var f = true;
+function animate() {
+  f = !f;
+  moveObject('franklin', {
+    role: 'turtle1', y: 6,
+    x: f ? 8 : 1,
+    rotation: f ? Math.PI : 0
+  }, animate);
+}
+animate();</pre></code>
         <canvas id="animationcanvas" width="300" height="300" style="position: absolute; bottom: 1em; right: 1em; box-shadow: 1px 1px 12px #555"></canvas>
         <script>
 (function () {
@@ -440,61 +442,80 @@ var to = {
   }
 
   var images = {};
-  function draw(role, place) {
-    if (!images[role]) {
-      images[role] = new Image();
-      images[role].src = 'images/' + role + '.png';
+  function draw(place) {
+    if (!images[place.role]) {
+      images[place.role] = new Image();
+      images[place.role].src = 'images/' + place.role + '.png';
     }
     ctx.save();
     ctx.translate(place.x, grid - 1 - place.y);
-    ctx.rotate(place.rotation);
-    ctx.drawImage(images[role], -1/2, -1/2, 1, 1);
+    ctx.rotate(- place.rotation);
+    ctx.drawImage(images[place.role], -1/2, -1/2, 1, 1);
     ctx.restore();
   }
 
+  function average(from, to, progress) {
+    return from + (to - from) * progress;
+  }
+
   var duration = 3000;
-  function animate(content, callback) {
-    var startTime = Date.now();
-    function computeProgress() {
-      return (Date.now() - startTime) / duration;
-    }
-    function average(from, to, progress) {
-      return from + (to - from) * progress;
-    }
-    function drawAll(progress) {
-      var f, t;
-      for (var name in content.from) {
-        if (content.from.hasOwnProperty(name)) {
-          f = content.from[name];
-          t = content.to[name];
-          draw(f.role, {
-            x: average(f.x, t.x, progress),
-            y: average(f.y, t.y, progress),
-            rotation: average(f.rotation, t.rotation, progress),
+  var current = {};
+  var animated = {};
+  function animate() {
+    var name;
+    var cont = false;
+    ctx.clearRect(-1, -1, grid + 1, grid + 1);
+    drawGrid();
+    for (name in animated) {
+      if (animated.hasOwnProperty(name)) {
+        var to = animated[name];
+        var from = current[name];
+        var progress = (Date.now() - to.startTime) / duration;
+        if (progress > 1) {
+          current[name] = {
+            role: to.role,
+            x: to.x,
+            y: to.y,
+            rotation: to.rotation
+          };
+          delete animated[name];
+          if (to.cb) {
+            to.cb();
+          }
+        } else {
+          cont = true;
+          draw({
+            role: to.role,
+            x: average(from.x, to.x, progress),
+            y: average(from.y, to.y, progress),
+            rotation: average(from.rotation, to.rotation, progress)
           });
         }
       }
     }
-    function iterate() {
-      var progress = computeProgress();
-      ctx.clearRect(-1, -1, grid + 1, grid + 1);
-      drawGrid();
-      if (progress > 1) {
-        drawAll(1);
-        callback();
-      } else {
-        setTimeout(iterate, 1000 / 60);
-        drawAll(progress);
+    for (name in current) {
+      if (current.hasOwnProperty(name) && !animated[name]) {
+        draw(current[name]);
       }
     }
-    setTimeout(iterate, 1000 / 60);
+    if (cont) {
+      setTimeout(animate, 1000 / 60);
+    }
   }
 
-  var content = eval('(function(){' + document.getElementById('animationcontent').innerHTML + ' return { from: from, to: to }})()');
-  var launch = function () {
-    animate(content, launch);
+  function moveObject(name, object, callback) {
+    if (!current[name]) {
+      current[name] = object;
+      animate();
+      callback();
+    } else {
+      object.startTime = Date.now();
+      object.cb = callback;
+      animated[name] = object;
+      animate();
+    }
   }
-  launch();
+  eval('(function() {' + document.getElementById('animationcontent').innerHTML + '}())');
 })();
         </script>
       </div>
