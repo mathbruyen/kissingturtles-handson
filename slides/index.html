@@ -1042,7 +1042,7 @@ that.model.createdItem.attach(function (data, event) {
         <h2>Step7: Event Push</h2>
         <div style="float: left; font-size: 20px; text-align: left;"><br/>
         Event-push with Atmosphere integrated in <b>3musket33rs</b> plugins<br/>
-        using Grails <b>event-push</b> plugin and <b>platform core</b> plugin<br/><br/>
+        using Grails <b>event-push</b> plugin (Stephane Maldini) and <b>platform core</b> plugin (Marc Palmer)<br/><br/>
         </div>
            <div >
             <img width="700" src="images/create.png"/>
@@ -1082,7 +1082,7 @@ that.model.createdItem.attach(function (data, event) {
         <h2>Step7: Franklin already knows...</h2>
         <div style="font-size: 20px">
         he doesn't want to be notified!<br/>
-        <b>in web-app/js/grails/mobile/push/pushmanager.js</b><br/>
+        <b>in web-app/js/kissingturtles/game-view.js</b><br/>
         <b>Back on created callback</b>
         <pre><code style="font-size: 14px" class="language-javascript">
     //----------------------------------------------------------------------------------------
@@ -1096,6 +1096,7 @@ that.model.createdItem.attach(function (data, event) {
         }
     });          
         </code></pre>
+        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git checkout step7_todo</code></pre>
         </div>
       </div>
 
@@ -1103,14 +1104,9 @@ that.model.createdItem.attach(function (data, event) {
       <h2>Step7: Franklin already knows...</h2>
       <div style="font-size: 20px">
         <b>Back on created callback</b>
-        <pre data-line="12, 21" style="font-size: 14px" ><code class="language-javascript">that.model.createdItem.attach(function (data, event) {
+        <pre data-line="7, 16" style="font-size: 14px" ><code class="language-javascript">that.model.createdItem.attach(function (data, event) {
         if (data.item.errors) {
-            $.each(data.item.errors, function (index, error) {
-                $('#input-game-' + error.field).validationEngine('showPrompt', error.message, 'fail');
-            });
-            event.stopPropagation();
-        } else if (data.item.message) {
-            showGeneralMessage(data, event);
+          //...
         } else {
             var confAsString = data.item.mazeDefinition;
             var conf = JSON.parse(confAsString);
@@ -1159,6 +1155,7 @@ that.model.createdItem.attach(function (data, event) {
         in web-app/js/grails/mobile/push/pushmanager.js,<br/>
         <b>5. Callback on updated</b><br/>
         to exclude myself from notification
+        <pre><code style="font-size: 14px" class="language-javascript"> &gt; git checkout step8_todo</code></pre>
       </div>
       </div>
 
