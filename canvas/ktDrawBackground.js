@@ -20,6 +20,6 @@
  **/
 window.ktDrawBackground = (function() {
   return function(canvas, grid) {
-    //TODO
+    // TODO
   };
 })();
