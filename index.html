@@ -104,7 +104,7 @@
         <h2>Canvas</h2>
         <div style="font-size: 20px">
           <br/>
-          <pre><code style="font-size: 14px" class="language-javascript"> &gt; git checkout canvas</code></pre>
+          <a href="https://github.com/mathbruyen/kissingturtles-handson/tree/master/canvas">code to fill</a> and <a href="https://github.com/mathbruyen/kissingturtles-handson/blob/master/canvas.md">notes</a>
         </div>
       </div>
 
@@ -240,8 +240,8 @@ ctx.stroke();</code></pre>
       <div id="canvas-scenery" class="step slide" data-x="3943" data-y="483" data-scale="0.6">
         <h2>Draw background!</h2>
         <p>I want to see some kind of grid</a></p>
-        <p>Edit <a href="../canvas/ktDrawBackground.js">ktDrawBackground.js</a></p>
-        <p>Test in <a href="../canvas/background.html">background.html</a></p>
+        <p>Edit <a href="canvas/ktDrawBackground.js">ktDrawBackground.js</a></p>
+        <p>Test in <a href="canvas/background.html">background.html</a></p>
         <canvas id="backgroundcanvas1" width="300" height="300" style="position: absolute; bottom: 1em; left: 1em; box-shadow: 1px 1px 12px #555"></canvas>
         <canvas id="backgroundcanvas2" width="300" height="300" style="position: absolute; bottom: 1em; right: 1em; box-shadow: 1px 1px 12px #555"></canvas>
         <script>
@@ -307,7 +307,7 @@ image.onload = function () {
   ctx.drawImage(image, -16, -16, 32, 32)
   ctx.restore();
 };
-image.src = 'images/tree.png';</pre></code>
+image.src = 'canvas/images/tree.png';</pre></code>
           <canvas width="300" height="250"></canvas>
         </div>
       </div>
@@ -315,8 +315,8 @@ image.src = 'images/tree.png';</pre></code>
       <div id="canvas-singleframe" class="step slide" data-x="1963" data-y="483" data-scale="0.6">
         <h2>Draw single frame!</h2>
         <p>I want to see the players and obstacles</a></p>
-        <p>Edit <a href="../canvas/ktDrawFrame.js">ktDrawFrame.js</a></p>
-        <p>Test in <a href="../canvas/frame.html">frame.html</a></p>
+        <p>Edit <a href="canvas/ktDrawFrame.js">ktDrawFrame.js</a></p>
+        <p>Test in <a href="canvas/frame.html">frame.html</a></p>
         <pre style="position: absolute; bottom: 1em; left: 1em;"><code id="framecontent" class="language-javascript">{ franklin: { role: 'turtle1',
     x: 5, y: 6, 
     rotation: Math.PI / 4
@@ -355,7 +355,7 @@ image.src = 'images/tree.png';</pre></code>
       ctx.drawImage(img, -1/2, -1/2, 1, 1);
       ctx.restore();
     };
-    img.src = 'images/' + object.role + '.png';
+    img.src = 'canvas/images/' + object.role + '.png';
   }
   var objects = eval('(' + document.getElementById('framecontent').innerHTML + ')');
   for (var name in objects) {
@@ -405,8 +405,8 @@ window.requestAnimationFrame(iterate);</pre></code>
       <div id="canvas-animation" class="step slide" data-x="3283" data-y="3" data-scale="0.6">
         <h2>Draw an animation!</h2>
         <p>I want to see the players moving</a></p>
-        <p>Edit <a href="../canvas/ktAnimate.js">ktAnimate.js</a></p>
-        <p>Test in <a href="../canvas/animate.html">animate.html</a></p>
+        <p>Edit <a href="canvas/ktAnimate.js">ktAnimate.js</a></p>
+        <p>Test in <a href="canvas/animate.html">animate.html</a></p>
         <pre style="position: absolute; bottom: 1em; left: 1em;"><code id="animationcontent" class="language-javascript">var f = true;
 function animate() { f = !f;
   moveObject('franklin', {
@@ -444,7 +444,7 @@ animate();</pre></code>
   function draw(place) {
     if (!images[place.role]) {
       images[place.role] = new Image();
-      images[place.role].src = 'images/' + place.role + '.png';
+      images[place.role].src = 'canvas/images/' + place.role + '.png';
     }
     ctx.save();
     ctx.translate(place.x, grid - 1 - place.y);
