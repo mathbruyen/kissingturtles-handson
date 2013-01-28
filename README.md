@@ -1,8 +1,5 @@
 # Hands on: KissingTurtles
 
-## Slides
+[Live](http://mathbruyen.github.com/kissingturtles-handson/). Presented by [Mathieu Bruyen](https://github.com/mathbruyen) and [Corinne Krych](https://github.com/corinnekrych) at [Greach 2013](http://greach.es/).
 
 Made using [impress.js](http://bartaz.github.com/impress.js/) with SVG animations.
-
-Images:
-* `pencil.png`: [Visual Pharm](http://www.iconfinder.com/icondetails/27845/128/edit_pencil_write_write_%26_erase_icon)
